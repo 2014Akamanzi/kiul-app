@@ -7,7 +7,7 @@ const links = [
   { href: "/counselling", label: "Counselling" },
   { href: "/mentorship", label: "Mentorship" },
   { href: "/short-courses", label: "Short Courses" },
-  { href: "/publishers", label: "Publishers" },
+  { href: "/publishing", label: "Publishing" },
   { href: "/membership", label: "Membership" },
   { href: "/news", label: "News" },
   { href: "/contact", label: "Contact" },

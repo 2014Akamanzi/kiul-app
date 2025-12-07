@@ -1,90 +1,46 @@
-import React from "react";
-
 export default function MembershipPage() {
   return (
-    <main className="min-h-screen bg-white text-slate-900">
-      <section className="mx-auto flex max-w-4xl flex-col gap-12 px-6 py-16 md:px-8 lg:px-10">
-        <header className="space-y-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-            Membership
-          </p>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            KIUL Membership
-          </h1>
-          <p className="max-w-3xl text-lg text-slate-700">
-            Join a community inspired by Ubuntu, leadership, and transformative
-            development—where learning is shared, and progress is collective.
-          </p>
-        </header>
+    <main className="min-h-screen bg-[#faf9f7] px-6 py-20">
+      <div className="max-w-4xl mx-auto">
 
-        <section className="space-y-3">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-            Why Become a Member?
-          </h2>
-          <p className="text-slate-700">
-            KIUL membership connects you to a network shaped by Ubuntu values,
-            leadership practice, and development thinking. Members engage in
-            continuous learning, collaborate with peers, and contribute to
-            initiatives that uplift communities and champion ethical leadership.
-          </p>
-        </section>
+        {/* PAGE TITLE */}
+        <h1 className="text-4xl font-semibold text-[#064e3b]">
+          KIUL Membership
+        </h1>
 
-        <section className="space-y-3">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-            Annual Membership Fee
-          </h2>
-          <p className="text-slate-700">
-            KIUL sustains its programs through a modest yearly contribution,
-            ensuring members receive meaningful value, access, and opportunities
-            while supporting our Ubuntu-driven mission.
-          </p>
-        </section>
+        {/* UNDERLINE */}
+        <div className="w-24 h-1 bg-[#a7c8bb] mt-3 mb-10"></div>
 
-        <section className="space-y-4">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-            Membership Benefits
-          </h2>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {[ 
-              "Access to the KIUL Newsletter",
-              "Access to Blogs and selected educational content",
-              "Discounts on publications, short courses, and events",
-              "Participation in online seminars, talks, or workshops",
-              "Early access to new KIUL programs or publications",
-              "A sense of belonging to the Ubuntu leadership network",
-            ].map((benefit) => (
-              <li
-                key={benefit}
-                className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800"
-              >
-                {benefit}
-              </li>
-            ))}
-          </ul>
-        </section>
+        {/* INTRO PARAGRAPH */}
+        <p className="text-lg leading-relaxed text-[#1a1a1a] mb-6">
+          Becoming a member of the Katoki Institute for Ubuntu Leadership (KIUL) 
+          connects you to a growing community of African scholars, leaders, 
+          counsellors, educators, entrepreneurs, and development practitioners 
+          who share a commitment to Ubuntu-driven leadership and collective growth.
+        </p>
 
-        <section className="space-y-3">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-            How to Join
-          </h2>
-          <p className="text-slate-700">
-            Becoming a member is simple—complete a short registration and select
-            your membership option. <span className="font-semibold text-slate-900">Online membership form coming soon.</span>
-          </p>
-        </section>
+        {/* BODY PARAGRAPHS */}
+        <p className="leading-relaxed text-[#1a1a1a] mb-6">
+          KIUL membership offers access to unique learning opportunities, leadership 
+          programmes, short courses, mentorship pathways, community dialogues, and 
+          exclusive publications grounded in Ubuntu philosophy. Members become part 
+          of a continental network dedicated to ethical leadership, healing, and 
+          community empowerment.
+        </p>
 
-        <section className="space-y-3">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-            An Ubuntu-Inspired Commitment
-          </h2>
-          <p className="text-slate-700">
-            Membership at KIUL is more than access—it is a commitment to Ubuntu
-            leadership, shared learning, and collective impact. Together, we
-            foster ethical leaders who elevate communities and embody the values
-            that define KIUL.
-          </p>
-        </section>
-      </section>
+        <p className="leading-relaxed text-[#1a1a1a] mb-6">
+          Membership also includes early access to KIUL research outputs, invitations 
+          to conferences and leadership forums, and priority participation in our 
+          AI-supported developmental training programmes.
+        </p>
+
+        <p className="leading-relaxed text-[#1a1a1a] mb-6">
+          Whether you are a student, professional, academic, counsellor, or community 
+          leader, KIUL welcomes you. Together, we build an ecosystem of transformative 
+          leadership rooted in Ubuntu, resilience, and shared purpose.
+        </p>
+
+      </div>
     </main>
   );
 }
