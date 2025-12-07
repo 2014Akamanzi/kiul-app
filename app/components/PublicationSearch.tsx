@@ -9,7 +9,7 @@ interface PublicationSearchProps {
 export default function PublicationSearch({ onSearch }: PublicationSearchProps) {
   const [query, setQuery] = useState("");
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     setQuery(value);
     onSearch(value.toLowerCase());
