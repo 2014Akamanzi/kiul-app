@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 
-export default function PublicationSearch({ onSearch }) {
+interface PublicationSearchProps {
+  onSearch: (query: string) => void;
+}
+
+export default function PublicationSearch({ onSearch }: PublicationSearchProps) {
   const [query, setQuery] = useState("");
 
   function handleChange(e) {

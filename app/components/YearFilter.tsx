@@ -1,6 +1,11 @@
 "use client";
 
-export default function YearFilter({ years, onFilter }) {
+interface YearFilterProps {
+  years: string[];
+  onFilter: (year: string) => void;
+}
+
+export default function YearFilter({ years, onFilter }: YearFilterProps) {
   return (
     <div className="mb-6">
       <select
