@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import StandardPageLayout from '../../components/StandardPageLayout';
 import PublishingSidebar from "@/app/publishing/PublishingSidebar";
 import PublicationSearch from "@/app/components/PublicationSearch";
 import YearFilter from "@/app/components/YearFilter";
@@ -53,51 +54,51 @@ export default function CJDJPage() {
   }
 
   return (
-    <main className="max-w-7xl mx-auto px-6 py-16">
-      <h1 className="text-4xl font-semibold text-[#1a1a1a] mb-10 text-center">
+    <StandardPageLayout>
+      <h1 className="text-4xl font-semibold text-[var(--kiul-emerald-900)] mb-[var(--space-lg)] text-center">
         Commons, Justice & Development Journal (CJDJ)
       </h1>
 
-      <div className="flex flex-col md:flex-row gap-10">
+      <div className="flex flex-col md:flex-row gap-[var(--space-lg)]">
         {/* SIDEBAR */}
         <PublishingSidebar />
 
         {/* MAIN CONTENT */}
-        <div className="flex-1 bg-white border border-[#e8e1d8] shadow-sm rounded-xl p-8">
+        <div className="flex-1 bg-[var(--kiul-card-bg)] border border-[var(--kiul-border)] shadow-[var(--kiul-shadow-soft)] rounded-xl p-[var(--space-lg)]">
 
           {/* INTRO */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-semibold text-[#1a1a1a] mb-4">About the Journal</h2>
-            <p className="text-[#444] leading-relaxed mb-4">
+          <section className="mb-[var(--space-lg)]">
+            <h2 className="text-2xl font-semibold text-[var(--kiul-emerald-900)] mb-[var(--space-sm)]">About the Journal</h2>
+            <p className="text-[var(--kiul-text-medium)] leading-relaxed mb-[var(--space-sm)]">
               The <strong>Commons, Justice & Development Journal (CJDJ)</strong> 
               publishes peer-reviewed research on Ubuntu philosophy, justice, 
               leadership, governance, and social transformation in Africa and beyond.
             </p>
           </section>
 
-          <div className="border-t border-[#e8e1d8] my-8"></div>
+          <div className="border-t border-[var(--kiul-border)] my-[var(--space-lg)]"></div>
 
           {/* SEARCH + FILTER */}
           <PublicationSearch onSearch={handleSearch} />
           <YearFilter years={years} onFilter={handleYearFilter} />
 
           {/* ARTICLES */}
-          <h2 className="text-2xl font-semibold text-[#1a1a1a] mb-6">Journal Articles</h2>
+          <h2 className="text-2xl font-semibold text-[var(--kiul-emerald-900)] mb-6">Journal Articles</h2>
 
           {filtered.map((a, i) => (
             <div
               key={i}
-              className="border border-[#e8e1d8] rounded-xl p-6 mb-6 bg-[#fafafa] shadow-sm"
+              className="border border-[var(--kiul-border)] rounded-xl p-6 mb-6 bg-[var(--kiul-card-bg)] shadow-sm"
             >
-              <p className="text-lg font-medium text-[#1a1a1a] mb-1">
+              <p className="text-lg font-medium text-[var(--kiul-text-dark)] mb-1">
                 {a.authors} ({a.year}). <span className="italic">{a.title}</span>.
               </p>
 
-              <p className="text-[#444] leading-relaxed mb-4">{a.abstract}</p>
+              <p className="text-[var(--kiul-text-medium)] leading-relaxed mb-4">{a.abstract}</p>
 
               <a
                 href={a.pdf}
-                className="inline-block px-4 py-2 bg-[#1a4d2e] text-white rounded-lg text-sm font-medium hover:bg-[#163d25] transition"
+                className="inline-block px-4 py-2 bg-[var(--kiul-emerald-800)] text-white rounded-lg text-sm font-medium hover:bg-[var(--kiul-emerald-700)] transition"
               >
                 Download PDF
               </a>
@@ -105,10 +106,10 @@ export default function CJDJPage() {
           ))}
 
           {filtered.length === 0 && (
-            <p className="text-[#777] italic">No articles match your search.</p>
+            <p className="text-[var(--kiul-text-light)] italic">No articles match your search.</p>
           )}
         </div>
       </div>
-    </main>
+    </StandardPageLayout>
   );
 }

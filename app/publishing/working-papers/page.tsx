@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import StandardPageLayout from '../../components/StandardPageLayout';
 import PublishingSidebar from "@/app/publishing/PublishingSidebar";
 import PublicationSearch from "@/app/components/PublicationSearch";
 import YearFilter from "@/app/components/YearFilter";
@@ -62,27 +63,27 @@ export default function WorkingPapersPage() {
   // PAGE LAYOUT
   // ------------------------------------
   return (
-    <main className="max-w-7xl mx-auto px-6 py-16">
+    <StandardPageLayout>
 
-      <h1 className="text-4xl font-semibold text-[#1a1a1a] mb-10 text-center">
+      <h1 className="text-4xl font-semibold text-[var(--kiul-emerald-900)] mb-[var(--space-lg)] text-center">
         KIUL Working Paper Series
       </h1>
 
-      <div className="flex flex-col md:flex-row gap-10">
+      <div className="flex flex-col md:flex-row gap-[var(--space-lg)]">
 
         {/* SIDEBAR */}
         <PublishingSidebar />
 
         {/* MAIN CONTENT */}
-        <div className="flex-1 bg-white border border-[#e8e1d8] shadow-sm rounded-xl p-8">
+        <div className="flex-1 bg-[var(--kiul-card-bg)] border border-[var(--kiul-border)] shadow-[var(--kiul-shadow-soft)] rounded-xl p-[var(--space-lg)]">
 
           {/* INTRO */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-semibold text-[#1a1a1a] mb-4">
+          <section className="mb-[var(--space-lg)]">
+            <h2 className="text-2xl font-semibold text-[var(--kiul-emerald-900)] mb-4">
               About the Working Paper Series
             </h2>
 
-            <p className="text-[#444] leading-relaxed mb-4">
+            <p className="text-[var(--kiul-text-medium)] leading-relaxed mb-4">
               KIUL Working Papers provide a platform for emerging and established
               scholars to share ongoing research, theoretical reflections, and
               policy-relevant insights rooted in Ubuntu-informed development
@@ -90,20 +91,20 @@ export default function WorkingPapersPage() {
               intellectual growth.
             </p>
 
-            <p className="text-[#444] leading-relaxed mb-4">
+            <p className="text-[var(--kiul-text-medium)] leading-relaxed mb-4">
               Working papers are freely accessible. Authors are expected to
               organise a seminar or webinar to present their work for public
               discussion and scholarly refinement.
             </p>
           </section>
 
-          <div className="border-t border-[#e8e1d8] my-8"></div>
+          <div className="border-t border-[var(--kiul-border)] my-8"></div>
 
           {/* SEARCH + FILTERS */}
           <PublicationSearch onSearch={handleSearch} />
           <YearFilter years={years} onFilter={handleYearFilter} />
 
-          <h2 className="text-2xl font-semibold text-[#1a1a1a] mb-6">
+          <h2 className="text-2xl font-semibold text-[var(--kiul-emerald-900)] mb-6">
             Published Working Papers
           </h2>
 
@@ -111,14 +112,14 @@ export default function WorkingPapersPage() {
           {filtered.map((p, i) => (
             <div
               key={i}
-              className="border border-[#e8e1d8] rounded-xl p-6 mb-8 bg-[#fafafa] shadow-sm"
+              className="border border-[var(--kiul-border)] rounded-xl p-6 mb-8 bg-[var(--kiul-card-bg)] shadow-sm"
             >
-              <p className="text-[#1a1a1a] font-medium text-lg mb-1">
+              <p className="text-[var(--kiul-text-dark)] font-medium text-lg mb-1">
                 {p.authors} ({p.year}).{" "}
                 <span className="italic">{p.title}</span>.
               </p>
 
-              <p className="text-[#444] mb-4 leading-relaxed">
+              <p className="text-[var(--kiul-text-medium)] mb-4 leading-relaxed">
                 {p.abstract}
               </p>
 
@@ -128,7 +129,7 @@ export default function WorkingPapersPage() {
                   <a
                     href={p.pdf}
                     target="_blank"
-                    className="px-4 py-2 bg-[#1a4d2e] text-white rounded-lg text-sm font-medium hover:bg-[#163d25] transition"
+                    className="px-4 py-2 bg-[var(--kiul-emerald-800)] text-white rounded-lg text-sm font-medium hover:bg-[var(--kiul-emerald-700)] transition"
                   >
                     Download PDF
                   </a>
@@ -139,7 +140,7 @@ export default function WorkingPapersPage() {
                   href={`mailto:info.kiul@katokifoundation.org?subject=Request%20for%20Working%20Paper:%20${encodeURIComponent(
                     p.title
                   )}`}
-                  className="px-4 py-2 bg-[#6a6a6a] text-white rounded-lg text-sm font-medium hover:bg-[#555] transition"
+                  className="px-4 py-2 bg-[var(--kiul-emerald-600)] text-white rounded-lg text-sm font-medium hover:bg-[var(--kiul-emerald-500)] transition"
                 >
                   Request Full Version
                 </a>
@@ -148,10 +149,10 @@ export default function WorkingPapersPage() {
           ))}
 
           {filtered.length === 0 && (
-            <p className="text-[#777] italic">No working papers match your search.</p>
+            <p className="text-[var(--kiul-text-light)] italic">No working papers match your search.</p>
           )}
         </div>
       </div>
-    </main>
+    </StandardPageLayout>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import StandardPageLayout from '../../components/StandardPageLayout';
 import PublishingSidebar from "@/app/publishing/PublishingSidebar";
 import PublicationSearch from "@/app/components/PublicationSearch";
 import YearFilter from "@/app/components/YearFilter";
@@ -95,9 +96,9 @@ export default function ProceedingsPage() {
   // PAGE LAYOUT
   // ------------------------------------
   return (
-    <main className="max-w-7xl mx-auto px-6 py-16">
+    <StandardPageLayout>
 
-      <h1 className="text-4xl font-semibold text-[#1a1a1a] mb-10 text-center">
+      <h1 className="text-4xl font-semibold text-[var(--kiul-emerald-900)] mb-[var(--space-lg)] text-center">
         Conference Proceedings
       </h1>
 
@@ -107,34 +108,34 @@ export default function ProceedingsPage() {
         <PublishingSidebar />
 
         {/* MAIN CONTENT */}
-        <div className="flex-1 bg-white border border-[#e8e1d8] shadow-sm rounded-xl p-8">
+        <div className="flex-1 bg-[var(--kiul-card-bg)] border border-[var(--kiul-border)] shadow-sm rounded-xl p-8">
 
           {/* INTRO */}
           <section className="mb-10">
-            <h2 className="text-2xl font-semibold text-[#1a1a1a] mb-4">
+            <h2 className="text-2xl font-semibold text-[var(--kiul-emerald-900)] mb-4">
               About KIUL Conference Proceedings
             </h2>
 
-            <p className="text-[#444] leading-relaxed mb-4">
+            <p className="text-[var(--kiul-text-medium)] leading-relaxed mb-4">
               KIUL publishes annual proceedings from conferences, symposia, and
               research seminars. These collections bring together scholarship that
               reflects Ubuntu ethics, development studies, leadership, and
               transformative social thinking.
             </p>
 
-            <p className="text-[#444] leading-relaxed mb-4">
+            <p className="text-[var(--kiul-text-medium)] leading-relaxed mb-4">
               Proceedings are freely accessible. For printed volumes or rights enquiries,
               please contact <strong>info.kiul@katokifoundation.org</strong>.
             </p>
           </section>
 
-          <div className="border-t border-[#e8e1d8] my-8"></div>
+          <div className="border-t border-[var(--kiul-border)] my-8"></div>
 
           {/* SEARCH + YEAR FILTER */}
           <PublicationSearch onSearch={handleSearch} />
           <YearFilter years={years} onFilter={handleYearFilter} />
 
-          <h2 className="text-2xl font-semibold text-[#1a1a1a] mb-6">
+          <h2 className="text-2xl font-semibold text-[var(--kiul-emerald-900)] mb-6">
             Proceedings by Year
           </h2>
 
@@ -146,28 +147,28 @@ export default function ProceedingsPage() {
 
             return (
               <div key={year} className="mb-12">
-                <h3 className="text-xl font-semibold text-[#1a1a1a] mb-4">
-                  {year} Proceedings
+                <h3 className="text-xl font-semibold text-[var(--kiul-emerald-800)] mb-4">
+                  {year}
                 </h3>
 
                 {papersForYear.map((p, i) => (
                   <div
                     key={i}
-                    className="border border-[#e8e1d8] rounded-xl p-6 mb-6 bg-[#fafafa] shadow-sm"
+                    className="border border-[var(--kiul-border)] rounded-xl p-6 mb-6 bg-[var(--kiul-card-bg)] shadow-sm"
                   >
-                    <p className="text-[#1a1a1a] font-medium text-lg mb-1">
+                    <p className="text-[var(--kiul-text-dark)] font-medium text-lg mb-1">
                       {p.authors}.{" "}
                       <span className="italic">{p.title}</span>.
                     </p>
 
-                    <p className="text-[#444] mb-4 leading-relaxed">
+                    <p className="text-[var(--kiul-text-medium)] mb-4 leading-relaxed">
                       {p.abstract}
                     </p>
 
                     <a
                       href={p.pdf}
                       target="_blank"
-                      className="inline-block px-4 py-2 bg-[#1a4d2e] text-white rounded-lg text-sm font-medium hover:bg-[#163d25] transition"
+                      className="inline-block px-4 py-2 bg-[var(--kiul-emerald-800)] text-white rounded-lg text-sm font-medium hover:bg-[var(--kiul-emerald-700)] transition"
                     >
                       Download PDF
                     </a>
@@ -178,10 +179,10 @@ export default function ProceedingsPage() {
           })}
 
           {filtered.length === 0 && (
-            <p className="text-[#777] italic">No proceedings match your search.</p>
+            <p className="text-[var(--kiul-text-light)] italic">No proceedings match your search.</p>
           )}
         </div>
       </div>
-    </main>
+    </StandardPageLayout>
   );
 }

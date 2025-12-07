@@ -7,9 +7,9 @@ interface YearFilterProps {
 
 export default function YearFilter({ years, onFilter }: YearFilterProps) {
   return (
-    <div className="mb-6">
+    <div className="mb-[var(--space-lg)]">
       <select
-        className="px-4 py-2 rounded-xl border border-[#d9c5a3] bg-[#fbfaf8] text-[#1a1a1a] focus:border-[#1a4d2e] focus:ring-0 outline-none"
+        className="px-4 py-2 rounded-xl border border-[var(--kiul-border)] bg-[var(--kiul-card-bg)] text-[var(--kiul-text-dark)] focus:border-[var(--kiul-emerald-700)] focus:ring-2 focus:ring-[var(--kiul-emerald-600)] outline-none transition-all"
         onChange={(e) => onFilter(e.target.value)}
       >
         <option value="">Filter by Year</option>
