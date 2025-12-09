@@ -82,9 +82,15 @@ export default function AboutPage() {
           </h2>
           
           <div className="text-center mb-4">
-            <div className="inline-block bg-gradient-to-br from-orange-100 to-orange-200 p-8 rounded-lg shadow-lg mb-3">
-              <div className="w-48 h-48 md:w-64 md:h-64 mx-auto flex items-center justify-center">
-                <span className="text-8xl">👤</span>
+            <div className="inline-block bg-gradient-to-br from-orange-100 to-orange-200 p-2 rounded-lg shadow-lg mb-3">
+              <div className="w-48 h-48 md:w-64 md:h-64 mx-auto relative overflow-hidden rounded-md">
+                <Image
+                  src="/images/fortunatus-kawegere.jpg"
+                  alt="Fortunatus Felix Kawegere - Ta Mwalimu Katoki"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
             </div>
             <p className="font-semibold text-lg text-gray-700">Fortunatus Felix Kawegere</p>
