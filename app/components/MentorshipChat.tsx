@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
+import { UserBubble, AIBubble } from './ChatBubble';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -100,10 +101,10 @@ export default function MentorshipChat() {
   };
 
   return (
-    <div className="bg-[var(--kiul-card-bg)] border border-[var(--kiul-border)] rounded-2xl shadow-[var(--kiul-shadow-soft)] overflow-hidden flex flex-col h-[600px]">
+    <div className="bg-white border border-[var(--kiul-green-soft)] rounded-[10px] shadow-[var(--kiul-card-shadow)] overflow-hidden flex flex-col h-[600px]">
       
       {/* Chat Header */}
-      <div className="bg-[#075E54] text-white px-4 py-3 flex items-center gap-3">
+      <div className="bg-[var(--kiul-green)] text-white px-4 py-3 flex items-center gap-3">
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           className="h-6 w-6" 
@@ -127,42 +128,21 @@ export default function MentorshipChat() {
       {/* Messages Container */}
       <div 
         ref={chatContainerRef}
-        className="flex-1 overflow-y-auto px-[var(--space-md)] py-[var(--space-lg)] space-y-[var(--space-md)] bg-[var(--kiul-bg-main)]"
+        className="flex-1 overflow-y-auto bg-[var(--kiul-background)]"
       >
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-          >
-            <div
-              className={`max-w-[80%] rounded-xl px-[var(--space-md)] py-[var(--space-sm)] ${
-                message.role === 'user'
-                  ? 'bg-[var(--kiul-card-bg)] border border-[var(--kiul-border)] text-[var(--kiul-text-dark)]'
-                  : 'bg-[var(--kiul-emerald-50)] border border-[var(--kiul-emerald-200)] text-[var(--kiul-text-dark)]'
-              }`}
-            >
-              {/* Role Label */}
-              <p className={`text-xs font-bold mb-1 ${
-                message.role === 'user' 
-                  ? 'text-[var(--kiul-emerald-700)]' 
-                  : 'text-[var(--kiul-emerald-800)]'
-              }`}>
-                {message.role === 'user' ? 'You' : 'Ubuntu Mentor'}
-              </p>
-              
-              {/* Message Content */}
-              <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                {message.content}
-              </p>
-            </div>
-          </div>
-        ))}
+        <div className="chat-container">
+          {messages.map((message, index) => (
+            message.role === 'user' ? (
+              <UserBubble key={index} message={message.content} />
+            ) : (
+              <AIBubble key={index} message={message.content} />
+            )
+          ))}
 
-        {/* Loading Indicator */}
-        {isLoading && (
-          <div className="flex justify-start">
-            <div className="bg-white rounded-lg rounded-bl-none px-3 py-2 shadow-sm">
-              <div className="flex items-center gap-2">
+          {/* Loading Indicator */}
+          {isLoading && (
+            <div className="flex justify-start">
+              <div className="chat-bubble-assistant shadow-sm">
                 <div className="flex gap-1">
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
@@ -170,14 +150,14 @@ export default function MentorshipChat() {
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        <div ref={messagesEndRef} />
+          <div ref={messagesEndRef} />
+        </div>
       </div>
 
       {/* Input Area */}
-      <div className="border-t border-gray-300 bg-[#F0F0F0] px-3 py-2">
+      <div className="sticky bottom-0 bg-white border-t border-[var(--kiul-green-soft)] p-4">
         <div className="flex gap-2 items-center">
           <input
             type="text"
@@ -186,21 +166,18 @@ export default function MentorshipChat() {
             onKeyPress={handleKeyPress}
             placeholder="Type a message..."
             disabled={isLoading}
-            className="flex-1 border-none rounded-full px-4 py-2.5 text-gray-900 bg-white
-                     focus:ring-2 focus:ring-[#128C7E] focus:outline-none transition-all
+            className="w-full h-[46px] px-4 rounded-[10px] border border-[var(--kiul-green-soft)] focus:ring-2 focus:ring-[var(--kiul-green)] outline-none transition-all
                      disabled:bg-gray-200 disabled:cursor-not-allowed"
           />
           <button
             onClick={sendMessage}
             disabled={!input.trim() || isLoading}
-            className="bg-[#128C7E] text-white p-3 rounded-full font-bold shadow-md
-                     hover:bg-[#075E54] disabled:bg-gray-400 disabled:cursor-not-allowed 
-                     transition-all duration-200 flex items-center justify-center"
+            className="h-[46px] px-6 rounded-[10px] bg-[var(--kiul-green)] text-white font-semibold hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             title="Send message"
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              className="h-6 w-6" 
+              className="h-5 w-5" 
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor"

@@ -1,8 +1,8 @@
-import StandardPageLayout from '../../components/StandardPageLayout';
+import Container from '../../components/Container';
 
-export default function PublishingGuidelinesPage() {
+export default function GuidelinesPage() {
   return (
-    <StandardPageLayout>
+    <Container>
       <h1 className="text-4xl font-semibold text-[var(--kiul-emerald-900)] mb-6">
         Publishing Guidelines
       </h1>
@@ -102,6 +102,6 @@ export default function PublishingGuidelinesPage() {
           📱 WhatsApp: <strong>+255-758624863</strong>
         </p>
       </section>
-    </StandardPageLayout>
+    </Container>
   );
 }

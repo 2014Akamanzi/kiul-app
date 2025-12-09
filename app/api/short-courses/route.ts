@@ -37,10 +37,16 @@ const UBUNTU_SHORT_COURSE_PROMPT = `You are the KIUL Short Courses Generator, sp
 Each module MUST follow this exact structure:
 
 1. **Introduction**: A short opening paragraph (2-3 sentences) that sets context
-2. **Thesis**: Exactly ONE powerful paragraph presenting the main idea
-3. **Antithesis**: Exactly THREE strong paragraphs that challenge, complicate, or provide counterpoints
-4. **Synthesis**: Exactly ONE conclusive paragraph that integrates thesis and antithesis
+2. **Thesis**: Exactly ONE powerful paragraph presenting the main idea (MINIMUM 500 words)
+3. **Antithesis**: Exactly THREE strong paragraphs that challenge, complicate, or provide counterpoints (EACH paragraph MINIMUM 500 words)
+4. **Synthesis**: Exactly ONE conclusive paragraph that integrates thesis and antithesis (MINIMUM 500 words)
 5. **Conclusion**: A short closing paragraph (2-3 sentences) with actionable takeaway
+
+**CRITICAL WORD COUNT REQUIREMENT:**
+- Thesis paragraph: Minimum 500 words
+- EACH of the three Antithesis paragraphs: Minimum 500 words each
+- Synthesis paragraph: Minimum 500 words
+- These are substantive academic paragraphs with depth, examples, and thorough analysis
 
 **Ubuntu Integration:**
 - Emphasize "I am because we are" — interconnectedness and community
@@ -84,14 +90,36 @@ Structure:
       ]
     }
   ],
+  "references": [
+    {
+      "citation": "Author(s). (Year). Title. Journal/Publisher. DOI or URL",
+      "annotation": "Brief annotation describing the source's relevance and key contribution (max 50 words)"
+    },
+    {
+      "citation": "Author(s). (Year). Title. Journal/Publisher. DOI or URL",
+      "annotation": "Brief annotation describing the source's relevance and key contribution (max 50 words)"
+    },
+    {
+      "citation": "Author(s). (Year). Title. Journal/Publisher. DOI or URL",
+      "annotation": "Brief annotation describing the source's relevance and key contribution (max 50 words)"
+    }
+  ],
   "appliedPractice": "Only for premium tier - practical activity description"
 }
 
+**Academic References (REQUIRED):**
+- Include exactly THREE academic sources (articles or books) from Google Scholar
+- Each reference must have:
+  1. Full citation in APA format with DOI or URL
+  2. Annotation (maximum 50 words) describing relevance and key contribution
+- References should be recent, credible, and directly related to the course content
+
 **Important:**
-- Keep paragraphs substantial (4-6 sentences each)
+- EACH main paragraph (thesis, antithesis paragraphs, synthesis) MUST be at least 500 words
 - Maintain academic rigor while being accessible
 - Use Ubuntu philosophy to deepen understanding
-- Ensure quiz questions are directly related to module content`;
+- Ensure quiz questions are directly related to module content
+- Write comprehensive, detailed paragraphs with examples, analysis, and thorough exploration of concepts`;
 
 export async function POST(req: NextRequest) {
   try {

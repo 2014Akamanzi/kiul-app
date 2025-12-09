@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import StandardPageLayout from '../components/StandardPageLayout';
+import Container from '../components/Container';
 
 export default function PublishersPage() {
   return (
-    <StandardPageLayout>
+    <Container>
 
         {/* PAGE TITLE */}
         <h1 className="text-4xl font-semibold text-[var(--kiul-emerald-900)]">
@@ -216,7 +216,7 @@ export default function PublishersPage() {
             </p>
           }
         />
-    </StandardPageLayout>
+    </Container>
   );
 }
 

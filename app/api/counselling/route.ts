@@ -124,7 +124,7 @@ We're here to listen and support you.`,
 
     // Get AI response with streaming
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4',
+      model: 'gpt-4o-mini',
       messages,
       temperature: 0.7,
       max_tokens: 500,

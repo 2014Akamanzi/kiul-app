@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import StandardPageLayout from '../../components/StandardPageLayout';
+import Container from '../../components/Container';
+import PublicationContainer from '../../components/PublicationContainer';
 import PublishingSidebar from "@/app/publishing/PublishingSidebar";
 import PublicationSearch from "@/app/components/PublicationSearch";
 import YearFilter from "@/app/components/YearFilter";
@@ -54,62 +55,61 @@ export default function CJDJPage() {
   }
 
   return (
-    <StandardPageLayout>
-      <h1 className="text-4xl font-semibold text-[var(--kiul-emerald-900)] mb-[var(--space-lg)] text-center">
+    <Container>
+      <h1 className="text-3xl md:text-4xl font-bold text-[var(--kiul-text-dark)] mt-0 mb-6 text-center">
         Commons, Justice & Development Journal (CJDJ)
       </h1>
 
-      <div className="flex flex-col md:flex-row gap-[var(--space-lg)]">
+      <div className="flex flex-col md:flex-row gap-8">
         {/* SIDEBAR */}
         <PublishingSidebar />
 
         {/* MAIN CONTENT */}
-        <div className="flex-1 bg-[var(--kiul-card-bg)] border border-[var(--kiul-border)] shadow-[var(--kiul-shadow-soft)] rounded-xl p-[var(--space-lg)]">
-
-          {/* INTRO */}
-          <section className="mb-[var(--space-lg)]">
-            <h2 className="text-2xl font-semibold text-[var(--kiul-emerald-900)] mb-[var(--space-sm)]">About the Journal</h2>
-            <p className="text-[var(--kiul-text-medium)] leading-relaxed mb-[var(--space-sm)]">
-              The <strong>Commons, Justice & Development Journal (CJDJ)</strong> 
-              publishes peer-reviewed research on Ubuntu philosophy, justice, 
-              leadership, governance, and social transformation in Africa and beyond.
-            </p>
-          </section>
-
-          <div className="border-t border-[var(--kiul-border)] my-[var(--space-lg)]"></div>
-
-          {/* SEARCH + FILTER */}
-          <PublicationSearch onSearch={handleSearch} />
-          <YearFilter years={years} onFilter={handleYearFilter} />
-
-          {/* ARTICLES */}
-          <h2 className="text-2xl font-semibold text-[var(--kiul-emerald-900)] mb-6">Journal Articles</h2>
-
-          {filtered.map((a, i) => (
-            <div
-              key={i}
-              className="border border-[var(--kiul-border)] rounded-xl p-6 mb-6 bg-[var(--kiul-card-bg)] shadow-sm"
-            >
-              <p className="text-lg font-medium text-[var(--kiul-text-dark)] mb-1">
-                {a.authors} ({a.year}). <span className="italic">{a.title}</span>.
+        <div className="flex-1">
+          <PublicationContainer>
+            {/* INTRO */}
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold text-[var(--kiul-text-dark)] mb-4">About the Journal</h2>
+              <p className="text-[16px] text-[var(--kiul-text-soft)] leading-relaxed">
+                The <strong>Commons, Justice & Development Journal (CJDJ)</strong> 
+                publishes peer-reviewed research on Ubuntu philosophy, justice, 
+                leadership, governance, and social transformation in Africa and beyond.
               </p>
+            </section>
 
-              <p className="text-[var(--kiul-text-medium)] leading-relaxed mb-4">{a.abstract}</p>
+            <div className="my-10 border-t border-[#e5e2da]"></div>
 
-              <a
-                href={a.pdf}
-                className="inline-block px-4 py-2 bg-[var(--kiul-emerald-800)] text-white rounded-lg text-sm font-medium hover:bg-[var(--kiul-emerald-700)] transition"
-              >
-                Download PDF
-              </a>
-            </div>
-          ))}
+            {/* SEARCH + FILTER */}
+            <PublicationSearch onSearch={handleSearch} />
+            <YearFilter years={years} onFilter={handleYearFilter} />
+          </PublicationContainer>
 
-          {filtered.length === 0 && (
-            <p className="text-[var(--kiul-text-light)] italic">No articles match your search.</p>
-          )}
+          <PublicationContainer>
+            {/* ARTICLES */}
+            <h2 className="text-2xl font-semibold text-[var(--kiul-text-dark)] mb-6">Journal Articles</h2>
+
+            {filtered.map((a, i) => (
+              <div key={i}>
+                <div className="mb-8">
+                  <p className="text-[15px] text-[var(--kiul-text-soft)] mb-1">
+                    {a.authors} · {a.year}
+                  </p>
+                  <h3 className="text-xl font-semibold text-[var(--kiul-text-dark)] mb-3">{a.title}</h3>
+                  <p className="text-[16px] text-[var(--kiul-text-soft)] leading-relaxed mb-4">{a.abstract}</p>
+                  <a href={a.pdf} className="btn-secondary inline-block mt-3">
+                    Download PDF
+                  </a>
+                </div>
+                {i < filtered.length - 1 && <div className="my-10 border-t border-[#e5e2da]"></div>}
+              </div>
+            ))}
+
+            {filtered.length === 0 && (
+              <p className="text-[var(--kiul-text-light)] italic">No articles match your search.</p>
+            )}
+          </PublicationContainer>
         </div>
       </div>
-    </StandardPageLayout>
+    </Container>
   );
 }

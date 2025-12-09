@@ -103,7 +103,7 @@ We're here to support your growth journey.`,
 
     // Get AI response
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4',
+      model: 'gpt-4o-mini',
       messages,
       temperature: 0.7,
       max_tokens: 600, // Slightly longer for mentorship guidance
@@ -118,12 +118,18 @@ We're here to support your growth journey.`,
       isError: false,
     });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Mentorship API Error:', error);
+    console.error('Error details:', {
+      message: error.message,
+      code: error.code,
+      status: error.status,
+      type: error.type,
+    });
     
     return NextResponse.json(
       { 
-        error: 'I apologize, but I encountered an issue. Please try again or reach out to us directly at info.kiul@katokifoundation.org',
+        error: `I apologize, but I encountered an issue: ${error.message || 'Unknown error'}. Please try again or reach out to us directly at info.kiul@katokifoundation.org`,
         isError: true,
       },
       { status: 500 }

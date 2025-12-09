@@ -1,27 +1,25 @@
-import StandardPageLayout from '../components/StandardPageLayout';
+import Container from '../components/Container';
 
 export default function MembershipPage() {
   return (
-    <StandardPageLayout>
+    <Container>
       {/* HERO SECTION */}
       <section className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-semibold leading-tight text-[var(--kiul-emerald-900)] mb-4">
+        <h1 className="text-4xl md:text-5xl font-semibold leading-tight text-[var(--kiul-text-dark)] mt-0 mb-4">
           Become a Member of KIUL
         </h1>
-        <p className="text-lg leading-relaxed text-gray-600 max-w-2xl mx-auto">
+        <p className="text-lg leading-relaxed text-[var(--kiul-text-soft)]">
           Join a continental community advancing Ubuntu leadership, scholarship, and human development
         </p>
       </section>
 
       {/* MEMBERSHIP BENEFITS SECTION */}
-      <section className="-mx-4 sm:-mx-6 lg:-mx-8 py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-[var(--kiul-card-bg)]">
-        <div>
-          
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-semibold text-[var(--kiul-emerald-900)] mb-4">
-              Membership Benefits
-            </h2>
-            <p className="text-lg leading-relaxed text-gray-600 max-w-2xl mx-auto">
+      <section className="py-12">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-semibold text-[var(--kiul-text-dark)] mb-4">
+            Membership Benefits
+          </h2>
+          <p className="text-lg leading-relaxed text-[var(--kiul-text-soft)]">
               As a KIUL member, you gain access to transformative resources, networks, and opportunities rooted in Ubuntu philosophy.
             </p>
           </div>
@@ -185,18 +183,15 @@ export default function MembershipPage() {
             </div>
 
           </div>
-        </div>
       </section>
 
       {/* MEMBERSHIP OPTIONS SECTION */}
-      <section className="py-[var(--space-2xl)] bg-[var(--kiul-bg-soft)]">
-        <div className="max-w-6xl mx-auto px-4">
-          
-          <div className="text-center mb-[var(--space-2xl)]">
-            <h2 className="text-3xl font-bold text-[var(--kiul-emerald-900)] mb-[var(--space-sm)]">
-              Membership Options
-            </h2>
-            <p className="text-lg text-[var(--kiul-text-medium)] max-w-2xl mx-auto">
+      <section className="py-12">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-[var(--kiul-emerald-900)] mb-3">
+            Membership Options
+          </h2>
+          <p className="text-lg text-[var(--kiul-text-medium)]">
               Choose the membership level that best suits your engagement with KIUL's mission and activities.
             </p>
           </div>
@@ -392,7 +387,7 @@ export default function MembershipPage() {
             <h3 className="text-2xl font-bold text-emerald-800 mb-4">
               Ready to Join KIUL?
             </h3>
-            <p className="text-lg text-emerald-900/80 mb-6 max-w-2xl mx-auto">
+            <p className="text-lg text-emerald-900/80 mb-6">
               Become part of a transformative community advancing Ubuntu leadership across Africa. 
               Contact us today to discuss your membership application.
             </p>
@@ -411,10 +406,8 @@ export default function MembershipPage() {
               </a>
             </div>
           </div>
-
-        </div>
       </section>
 
-    </StandardPageLayout>
+    </Container>
   );
 }

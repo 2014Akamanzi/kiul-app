@@ -1,0 +1,427 @@
+"use client";
+
+import { useState } from "react";
+import { shouldEscalate } from "@/app/lib/escalation";
+import { streamChatCompletion } from "@/app/lib/streamChat";
+
+export default function CounsellingPage() {
+  const [messages, setMessages] = useState([
+    {
+      role: "assistant",
+      text: "Welcome to the KIUL Counselling Companion — a gentle Ubuntu-inspired space for emotional reflection and support. How are you feeling today?",
+    },
+  ]);
+
+  const [input, setInput] = useState("");
+  const [showSafetyWarning, setShowSafetyWarning] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
+
+  const handleSend = async () => {
+    if (!input.trim() || isStreaming) return;
+
+    const userMessage = { role: "user", text: input };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+
+    // Check for safety escalation
+    if (shouldEscalate(userMessage.text)) {
+      setShowSafetyWarning(true);
+      const safetyReply = {
+        role: "assistant",
+        text: "I hear your pain, and you deserve immediate care. I cannot let you go through this alone.\n\nPlease contact KIUL immediately so we can support you:\n\n📱 WhatsApp: +255-758624863\n📧 Email: counselling@katokifoundation.org\n\nIf you are in danger, contact your local emergency services right now.",
+      };
+      setMessages((prev) => [...prev, safetyReply]);
+      return;
+    }
+
+    // Stream OpenAI response
+    setIsStreaming(true);
+    const assistantMessage = { role: "assistant", text: "" };
+    setMessages((prev) => [...prev, assistantMessage]);
+
+    try {
+      const systemPrompt = `You are KIUL Counselling Companion, a compassionate counselor grounded in Ubuntu philosophy ("I am because we are"). 
+
+Your role:
+- Listen deeply and validate emotions
+- Ask gentle, open-ended questions
+- Acknowledge pain without minimizing it
+- Encourage reflection and connection
+- Use Ubuntu wisdom: interconnectedness, shared humanity, communal healing
+
+Tone: Warm, empathetic, non-judgmental, spiritually grounded
+Response length: 2-4 sentences max
+Always end with an open question or gentle invitation to share more.`;
+
+      await streamChatCompletion(
+        messages.concat(userMessage),
+        (chunk) => {
+          setMessages((prev) => {
+            const updated = [...prev];
+            updated[updated.length - 1].text += chunk;
+            return updated;
+          });
+        },
+        systemPrompt
+      );
+    } catch (error) {
+      console.error("Streaming error:", error);
+      setMessages((prev) => {
+        const updated = [...prev];
+        updated[updated.length - 1].text =
+          "I apologize, but I'm having trouble connecting right now. Please try again.";
+        return updated;
+      });
+    } finally {
+      setIsStreaming(false);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
+  return (
+    <div className="w-full">
+      <h1 className="text-3xl font-bold text-[var(--kiul-text-dark)] mb-3">
+        Counselling Companion
+      </h1>
+
+      <p className="text-[17px] text-[var(--kiul-text-soft)] mb-10 max-w-2xl">
+        A gentle Ubuntu-inspired space for emotional reflection and support.
+      </p>
+
+      {/* Safety Warning Banner */}
+      {showSafetyWarning && (
+        <div className="max-w-[900px] mx-auto mb-6 p-4 bg-red-50 border-2 border-red-300 rounded-xl">
+          <p className="text-red-800 font-semibold mb-2">
+            🔴 Crisis Support Available
+          </p>
+          <p className="text-sm text-red-700">
+            If you are in immediate danger, please reach out to our crisis team
+            or local emergency services.
+          </p>
+        </div>
+      )}
+
+      {/* Chat Interface */}
+      <div className="max-w-[900px] mx-auto">
+        <div className="h-[60vh] overflow-y-auto mb-4 space-y-4 p-4 border rounded-xl bg-white">
+          {messages.map((msg, i) => (
+            <div
+              key={i}
+              className={`flex ${
+                msg.role === "user" ? "justify-end" : "justify-start"
+              }`}
+            >
+              <div
+                className={`max-w-[75%] rounded-xl p-4 ${
+                  msg.role === "user"
+                    ? "bg-[var(--kiul-green)] text-white"
+                    : "bg-[var(--kiul-green-light)] text-[var(--kiul-text-dark)]"
+                }`}
+              >
+                <p className="whitespace-pre-wrap">{msg.text}</p>
+                {isStreaming && i === messages.length - 1 && (
+                  <span className="inline-block w-2 h-4 ml-1 bg-current animate-pulse" />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Input */}
+        <div className="flex gap-3">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Share what's on your heart..."
+            disabled={isStreaming}
+            className="flex-grow border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[var(--kiul-green)] disabled:opacity-50"
+          />
+          <button
+            onClick={handleSend}
+            disabled={isStreaming}
+            className="px-6 py-3 bg-[var(--kiul-green)] text-white rounded-xl font-semibold
+                       hover:bg-[var(--kiul-green-dark)] transition disabled:opacity-50"
+          >
+            {isStreaming ? "..." : "Send"}
+          </button>
+        </div>
+      </div>
+
+      {/* Subscription Tiers */}
+      <div className="max-w-[900px] mx-auto mt-12 pt-8 border-t">
+        <h2 className="text-2xl font-bold mb-6">Counselling Tiers</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="border rounded-xl p-6">
+            <h3 className="font-bold mb-2">Free</h3>
+            <p className="text-sm text-[var(--kiul-text-soft)]">
+              • 1 session per week<br />
+              • 15 messages per session
+            </p>
+          </div>
+          <div className="border-2 border-[var(--kiul-green)] rounded-xl p-6 relative">
+            <div className="absolute -top-3 left-4 bg-[var(--kiul-green)] text-white text-xs px-3 py-1 rounded-full">
+              RECOMMENDED
+            </div>
+            <h3 className="font-bold mb-2">Standard</h3>
+            <p className="text-sm text-[var(--kiul-text-soft)]">
+              • Unlimited sessions<br />
+              • Saved chat history
+            </p>
+          </div>
+          <div className="border rounded-xl p-6">
+            <h3 className="font-bold mb-2">Premium</h3>
+            <p className="text-sm text-[var(--kiul-text-soft)]">
+              • Everything in Standard<br />
+              • Voice notes support<br />
+              • Ubuntu Circle Zoom calls
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Reminder */}
+      <div className="max-w-[900px] mx-auto mt-8 p-6 bg-[var(--kiul-bg-soft)] rounded-xl">
+        <p className="text-sm text-[var(--kiul-text-soft)] text-center">
+          💚 Remember: "I am because we are." Your healing is our healing.
+        </p>
+      </div>
+    </div>
+  );
+}
+      <div className="max-w-[900px] mx-auto mb-12">
+        <div
+          className="bg-white border border-[var(--kiul-green-soft)] rounded-xl shadow-sm
+                     h-[60vh] overflow-y-auto p-6 flex flex-col gap-4"
+        >
+          {messages.map((m, i) => (
+            <div
+              key={i}
+              className={`max-w-[75%] px-4 py-3 rounded-xl text-[15px] leading-relaxed whitespace-pre-line ${
+                m.role === "assistant"
+                  ? "bg-[var(--kiul-green-light)] text-[var(--kiul-text-dark)] self-start"
+                  : "bg-[var(--kiul-green)] text-white self-end"
+              }`}
+            >
+              {m.text}
+            </div>
+          ))}
+        </div>
+
+        {/* SAFETY NOTICE */}
+        {showSafetyWarning && (
+          <div className="mt-4 p-4 bg-red-50 border-l-4 border-red-600 rounded">
+            <p className="text-sm text-red-900 font-medium">
+              <strong>⚠️ Crisis Support:</strong> If you are experiencing
+              thoughts of self-harm, please contact KIUL immediately:
+              <br />
+              <strong>WhatsApp:</strong>{" "}
+              <a
+                href="https://wa.me/255758624863"
+                className="underline hover:text-red-700"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                +255-758624863
+              </a>{" "}
+              ·{" "}
+              <strong>Email:</strong>{" "}
+              <a
+                href="mailto:counselling@katokifoundation.org"
+                className="underline hover:text-red-700"
+              >
+                counselling@katokifoundation.org
+              </a>
+            </p>
+          </div>
+        )}
+
+        {/* INPUT BAR */}
+        <div className="flex mt-6 gap-3">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Write your message..."
+            className="flex-grow px-4 py-3 border rounded-xl text-[16px]
+                       border-[var(--kiul-green-soft)] focus:outline-none focus:border-[var(--kiul-green)]"
+          />
+
+          <button
+            onClick={handleSend}
+            className="px-6 py-3 bg-[var(--kiul-green)] text-white font-semibold rounded-xl
+                       hover:bg-[var(--kiul-green-dark)] transition"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+
+      {/* SUBSCRIPTION TIERS */}
+      <section className="py-12">
+        <h2 className="text-2xl md:text-3xl font-bold text-[var(--kiul-text-dark)] mb-3 text-center">
+          Support Tiers
+        </h2>
+        <p className="text-base text-[var(--kiul-text-soft)] mb-10 text-center">
+          Choose the level that fits your journey
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
+            
+            {/* Tier 1 - Free */}
+            <div className="bg-[var(--kiul-card-bg)] border-2 border-[var(--kiul-border)] rounded-2xl p-[var(--space-lg)] shadow-[var(--kiul-shadow-soft)] hover:shadow-[var(--kiul-shadow-lg)] transition-all">
+              <div className="text-center mb-[var(--space-md)]">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--kiul-emerald-100)] rounded-full mb-[var(--space-sm)]">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-8 w-8 text-[var(--kiul-emerald-700)]" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-[var(--kiul-emerald-800)] mb-2">Free</h3>
+                <p className="text-sm text-[var(--kiul-text-medium)] font-semibold">Basic Support</p>
+              </div>
+              <ul className="space-y-[var(--space-xs)] mb-[var(--space-lg)]">
+                <li className="flex items-start gap-2 text-sm text-[var(--kiul-text-medium)]">
+                  <svg className="h-5 w-5 text-[var(--kiul-emerald-700)] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  10 messages per day
+                </li>
+                <li className="flex items-start gap-2 text-sm text-[var(--kiul-text-medium)]">
+                  <svg className="h-5 w-5 text-[var(--kiul-emerald-700)] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Basic AI counselling
+                </li>
+                <li className="flex items-start gap-2 text-sm text-[var(--kiul-text-medium)]">
+                  <svg className="h-5 w-5 text-[var(--kiul-emerald-700)] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Ubuntu-grounded reflections
+                </li>
+              </ul>
+              <button className="w-full bg-[var(--kiul-card-bg)] text-[var(--kiul-emerald-700)] border-2 border-[var(--kiul-emerald-700)] font-semibold px-6 py-3 rounded-lg hover:bg-[var(--kiul-emerald-50)] transition-all duration-300">
+                Current Plan
+              </button>
+            </div>
+
+            {/* Tier 2 - Standard */}
+            <div className="bg-[var(--kiul-card-bg)] border-2 border-[var(--kiul-emerald-700)] rounded-2xl p-[var(--space-lg)] shadow-[var(--kiul-shadow-lg)] hover:shadow-[var(--kiul-shadow-lg)] transform hover:scale-105 transition-all relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-[var(--kiul-emerald-700)] text-white text-xs font-bold px-4 py-1 rounded-full">
+                  RECOMMENDED
+                </span>
+              </div>
+              <div className="text-center mb-[var(--space-md)]">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--kiul-emerald-100)] rounded-full mb-[var(--space-sm)]">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-8 w-8 text-[var(--kiul-emerald-700)]" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-[var(--kiul-emerald-800)] mb-2">Standard</h3>
+                <p className="text-sm text-[var(--kiul-text-medium)] font-semibold">Enhanced Support</p>
+              </div>
+              <ul className="space-y-[var(--space-xs)] mb-[var(--space-lg)]">
+                <li className="flex items-start gap-2 text-sm text-[var(--kiul-text-medium)]">
+                  <svg className="h-5 w-5 text-[var(--kiul-emerald-700)] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Unlimited messages
+                </li>
+                <li className="flex items-start gap-2 text-sm text-[var(--kiul-text-medium)]">
+                  <svg className="h-5 w-5 text-[var(--kiul-emerald-700)] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Save last 3 sessions
+                </li>
+                <li className="flex items-start gap-2 text-sm text-[var(--kiul-text-medium)]">
+                  <svg className="h-5 w-5 text-[var(--kiul-emerald-700)] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Deeper Ubuntu reflective mode
+                </li>
+              </ul>
+              <button className="w-full bg-[var(--kiul-emerald-700)] text-white font-bold px-6 py-3 rounded-lg hover:bg-[var(--kiul-emerald-600)] hover:shadow-[var(--kiul-shadow-lg)] transition-all duration-300 shadow-md">
+                Select Standard
+              </button>
+            </div>
+
+            {/* Tier 3 - Premium */}
+            <div className="bg-[var(--kiul-card-bg)] border-2 border-[var(--kiul-border)] rounded-2xl p-[var(--space-lg)] shadow-[var(--kiul-shadow-soft)] hover:shadow-[var(--kiul-shadow-lg)] transition-all">
+              <div className="text-center mb-[var(--space-md)]">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-[var(--kiul-emerald-100)] rounded-full mb-[var(--space-sm)]">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-8 w-8 text-[var(--kiul-emerald-700)]" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-[var(--kiul-emerald-800)] mb-2">Premium</h3>
+                <p className="text-sm text-[var(--kiul-text-medium)] font-semibold">Complete Care</p>
+              </div>
+              <ul className="space-y-[var(--space-xs)] mb-[var(--space-lg)]">
+                <li className="flex items-start gap-2 text-sm text-[var(--kiul-text-medium)]">
+                  <svg className="h-5 w-5 text-[var(--kiul-emerald-700)] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Everything in Standard
+                </li>
+                <li className="flex items-start gap-2 text-sm text-[var(--kiul-text-medium)]">
+                  <svg className="h-5 w-5 text-[var(--kiul-emerald-700)] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Monthly "Ubuntu Circle" Zoom group
+                </li>
+                <li className="flex items-start gap-2 text-sm text-[var(--kiul-text-medium)]">
+                  <svg className="h-5 w-5 text-[var(--kiul-emerald-700)] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Discounts for KIUL courses
+                </li>
+                <li className="flex items-start gap-2 text-sm text-[var(--kiul-text-medium)]">
+                  <svg className="h-5 w-5 text-[var(--kiul-emerald-700)] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Anonymous email-based support
+                </li>
+              </ul>
+              <button className="w-full bg-[var(--kiul-emerald-700)] text-white font-bold px-6 py-3 rounded-lg hover:bg-[var(--kiul-emerald-600)] hover:shadow-[var(--kiul-shadow-lg)] transition-all duration-300 shadow-md">
+                Select Premium
+              </button>
+            </div>
+          </div>
+      </section>
+
+      {/* REMINDER */}
+      <div className="text-center py-8 px-4 bg-[var(--kiul-bg-soft)] rounded-lg max-w-[900px] mx-auto">
+        <p className="text-sm text-[var(--kiul-text-soft)] leading-relaxed">
+          This AI companion provides supportive reflection but is not a substitute for professional mental health care.
+          <span className="block mt-2 text-[var(--kiul-green)] italic">
+            "Ubuntu ngumuntu ngabantu" — We are because of each other.
+          </span>
+        </p>
+      </div>
+    </div>
+  );
+}

@@ -35,16 +35,16 @@ export default function CourseSelector({
   };
 
   return (
-    <div className="space-y-[var(--space-sm)]">
+    <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-bold text-[var(--kiul-emerald-800)]">
+        <h3 className="text-sm font-bold text-[var(--kiul-emerald-800)]">
           Select Courses
         </h3>
-        <span className="text-sm text-[var(--kiul-text-medium)]">
+        <span className="text-xs text-[var(--kiul-text-medium)]">
           {selectedCourses.length}/{maxCourses} selected
         </span>
       </div>
-      <div className="space-y-[var(--space-xs)]">
+      <div className="space-y-1">
         {AVAILABLE_COURSES.map((course) => {
           const isSelected = selectedCourses.includes(course);
           const isDisabled = !isSelected && selectedCourses.length >= maxCourses;
@@ -52,7 +52,7 @@ export default function CourseSelector({
           return (
             <label
               key={course}
-              className={`flex items-center gap-3 p-3 rounded-lg border transition-all cursor-pointer ${
+              className={`flex items-center gap-2 p-2 rounded-md border transition-all cursor-pointer ${
                 isSelected
                   ? 'bg-[var(--kiul-emerald-50)] border-[var(--kiul-emerald-700)]'
                   : isDisabled
@@ -65,9 +65,9 @@ export default function CourseSelector({
                 checked={isSelected}
                 onChange={() => handleToggle(course)}
                 disabled={isDisabled}
-                className="w-5 h-5 text-[var(--kiul-emerald-700)] rounded focus:ring-2 focus:ring-[var(--kiul-emerald-600)]"
+                className="w-4 h-4 text-[var(--kiul-emerald-700)] rounded focus:ring-1 focus:ring-[var(--kiul-emerald-600)]"
               />
-              <span className={`text-sm font-medium ${
+              <span className={`text-xs font-medium ${
                 isSelected 
                   ? 'text-[var(--kiul-emerald-900)]' 
                   : 'text-[var(--kiul-text-dark)]'

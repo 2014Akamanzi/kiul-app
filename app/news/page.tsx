@@ -1,15 +1,15 @@
-import StandardPageLayout from '../components/StandardPageLayout';
+import Container from '../components/Container';
 
 export default function NewsPage() {
   return (
-    <StandardPageLayout>
+    <Container>
 
         {/* PAGE TITLE */}
         <section className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-semibold leading-tight text-[var(--kiul-emerald-900)] mb-4">
+          <h1 className="text-4xl md:text-5xl font-semibold leading-tight text-[var(--kiul-text-dark)] mt-0 mb-4">
             News & Announcements
           </h1>
-          <p className="text-lg leading-relaxed text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg leading-relaxed text-[var(--kiul-text-soft)]">
             Stay informed with the latest updates from the Katoki Institute for 
             Ubuntu Leadership. This page features official announcements, 
             leadership reflections, programme updates, publications, and upcoming 
@@ -22,8 +22,8 @@ export default function NewsPage() {
 
           {/* Announcement 1 */}
           <li>
-          <div className="bg-[var(--kiul-card-bg)] p-6 rounded-xl shadow-sm border border-[var(--kiul-border)]">
-            <h2 className="text-xl font-semibold text-[var(--kiul-emerald-900)] mb-2">
+          <div className="bg-white p-6 rounded-[10px] shadow-[var(--kiul-card-shadow)] border border-[var(--kiul-green-soft)]">
+            <h2 className="text-xl font-semibold text-[var(--kiul-text-dark)] mb-2">
               📢 Coming Soon: KIUL Official Launch
             </h2>
             <p className="text-[var(--kiul-text-dark)] leading-relaxed">
@@ -36,8 +36,8 @@ export default function NewsPage() {
 
           {/* Announcement 2 */}
           <li>
-          <div className="bg-[var(--kiul-card-bg)] p-6 rounded-xl shadow-sm border border-[var(--kiul-border)]">
-            <h2 className="text-xl font-semibold text-[var(--kiul-emerald-900)] mb-2">
+          <div className="bg-white p-6 rounded-[10px] shadow-[var(--kiul-card-shadow)] border border-[var(--kiul-green-soft)]">
+            <h2 className="text-xl font-semibold text-[var(--kiul-text-dark)] mb-2">
               📰 New Courses & Training Modules
             </h2>
             <p className="text-[var(--kiul-text-dark)] leading-relaxed">
@@ -49,8 +49,8 @@ export default function NewsPage() {
 
           {/* Announcement 3 */}
           <li>
-          <div className="bg-[var(--kiul-card-bg)] p-6 rounded-xl shadow-sm border border-[var(--kiul-border)]">
-            <h2 className="text-xl font-semibold text-[var(--kiul-emerald-900)] mb-2">
+          <div className="bg-white p-6 rounded-[10px] shadow-[var(--kiul-card-shadow)] border border-[var(--kiul-green-soft)]">
+            <h2 className="text-xl font-semibold text-[var(--kiul-text-dark)] mb-2">
               📄 Publications & Research
             </h2>
             <p className="text-[var(--kiul-text-dark)] leading-relaxed">
@@ -61,6 +61,6 @@ export default function NewsPage() {
           </li>
 
         </ul>
-    </StandardPageLayout>
+    </Container>
   );
 }

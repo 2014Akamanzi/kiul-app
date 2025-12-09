@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import StandardPageLayout from '../../components/StandardPageLayout';
+import Container from '../../components/Container';
+import PublicationContainer from '../../components/PublicationContainer';
 import PublishingSidebar from "@/app/publishing/PublishingSidebar";
 import PublicationSearch from "@/app/components/PublicationSearch";
 import YearFilter from "@/app/components/YearFilter";
@@ -63,9 +64,9 @@ export default function SpiritualBooksPage() {
   // PAGE LAYOUT
   // ------------------------------------
   return (
-    <StandardPageLayout>
+    <Container>
 
-      <h1 className="text-4xl font-semibold text-[var(--kiul-emerald-900)] mb-[var(--space-lg)] text-center">
+      <h1 className="text-4xl font-semibold text-[var(--kiul-text-dark)] mt-0 mb-6 text-center">
         Spiritual & Motivation Books
       </h1>
 
@@ -79,7 +80,7 @@ export default function SpiritualBooksPage() {
 
           {/* INTRO */}
           <section className="mb-[var(--space-lg)]">
-            <h2 className="text-2xl font-semibold text-[var(--kiul-emerald-900)] mb-4">
+            <h2 className="text-2xl font-semibold text-[var(--kiul-text-dark)] mb-4">
               Why Spiritual & Motivation Books?
             </h2>
 
@@ -103,14 +104,14 @@ export default function SpiritualBooksPage() {
           <YearFilter years={years} onFilter={handleYearFilter} />
 
           {/* BOOKS */}
-          <h2 className="text-2xl font-semibold text-[var(--kiul-emerald-900)] mb-6">
+          <h2 className="text-2xl font-semibold text-[var(--kiul-text-dark)] mb-6">
             Published Titles
           </h2>
 
           {filtered.map((b, i) => (
             <div
               key={i}
-              className="border border-[var(--kiul-border)] rounded-xl p-6 mb-8 bg-[var(--kiul-card-bg)] shadow-sm"
+              className="border border-[var(--kiul-green-soft)] rounded-[10px] p-6 mb-8 bg-white shadow-[var(--kiul-card-shadow)]"
             >
               <p className="text-[var(--kiul-text-dark)] font-medium text-lg mb-1">
                 {b.authors} ({b.year}).{" "}
@@ -127,7 +128,7 @@ export default function SpiritualBooksPage() {
                   href={`mailto:info.kiul@katokifoundation.org?subject=Request%20for%20${encodeURIComponent(
                     b.title
                   )}`}
-                  className="inline-block px-4 py-2 bg-[var(--kiul-emerald-800)] text-white rounded-lg text-sm font-medium hover:bg-[var(--kiul-emerald-700)] transition"
+                  className="inline-block h-[46px] leading-[46px] px-6 bg-[var(--kiul-green)] text-white rounded-[10px] text-sm font-medium hover:bg-[var(--kiul-green)]/90 transition"
                 >
                   Request Copy
                 </a>
@@ -143,6 +144,6 @@ export default function SpiritualBooksPage() {
 
         </div>
       </div>
-    </StandardPageLayout>
+    </Container>
   );
 }

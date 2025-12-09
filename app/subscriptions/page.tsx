@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from 'react';
-import StandardPageLayout from '../components/StandardPageLayout';
+import { useState } from "react";
+import Container from '../components/Container';
 import TierCard from '../components/subscriptions/TierCard';
 
 export default function SubscriptionsPage() {
@@ -61,14 +61,14 @@ export default function SubscriptionsPage() {
   ];
 
   return (
-    <StandardPageLayout>
+    <Container>
       {/* Hero Section */}
       <section className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-semibold leading-tight text-[var(--kiul-emerald-900)] mb-4">
-          KIUL Membership & Subscriptions
+        <h1 className="text-3xl md:text-4xl font-bold text-[var(--kiul-text-dark)] mb-3">
+          Membership & Subscriptions
         </h1>
-        <p className="text-lg leading-relaxed text-gray-600 max-w-2xl mx-auto">
-          Choose the level of Ubuntu-powered support and learning that fits your journey
+        <p className="text-[17px] leading-relaxed text-[var(--kiul-text-muted)]">
+          Choose your Ubuntu-powered learning level
         </p>
       </section>
 
@@ -107,9 +107,8 @@ export default function SubscriptionsPage() {
         )}
 
         {/* Pricing Cards */}
-        <section className="py-20 px-4">
-          <div className="container mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+        <section className="py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
               {/* Free Tier */}
               <TierCard
                 name="Free"
@@ -143,16 +142,14 @@ export default function SubscriptionsPage() {
                 onSubscribe={() => handleSubscribe('Premium')}
               />
             </div>
-          </div>
         </section>
 
         {/* Comparison Table */}
-        <section className="py-20 px-4 bg-[var(--kiul-bg-soft)]">
-          <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold text-[var(--kiul-emerald-900)] text-center mb-4">
-              Feature Comparison
-            </h2>
-            <p className="text-center text-[var(--kiul-text-medium)] mb-12 max-w-2xl mx-auto">
+        <section className="py-12 mt-12">
+          <h2 className="text-3xl font-bold text-[var(--kiul-emerald-900)] text-center mb-4">
+            Feature Comparison
+          </h2>
+          <p className="text-center text-[var(--kiul-text-medium)] mb-12">
               See how our tiers compare across Counselling, Mentorship, and Short Courses
             </p>
 
@@ -248,20 +245,18 @@ export default function SubscriptionsPage() {
                 </table>
               </div>
             </div>
-          </div>
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 px-4">
-          <div className="container mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold text-[var(--kiul-emerald-900)] text-center mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-center text-[var(--kiul-text-medium)] mb-12">
-              Common questions about KIUL subscriptions
-            </p>
+        <section className="py-12">
+          <h2 className="text-3xl font-bold text-[var(--kiul-emerald-900)] text-center mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-center text-[var(--kiul-text-medium)] mb-12">
+            Common questions about KIUL subscriptions
+          </p>
 
-            <div className="space-y-6">
+          <div className="space-y-6">
               <div className="bg-[var(--kiul-card-bg)] border border-[var(--kiul-border)] rounded-xl p-6 shadow-[var(--kiul-shadow-soft)]">
                 <h3 className="text-lg font-bold text-[var(--kiul-emerald-900)] mb-2">
                   Can I upgrade or downgrade my tier?
@@ -301,13 +296,11 @@ export default function SubscriptionsPage() {
                   Contact info.kiul@katokifoundation.org for more information.
                 </p>
               </div>
-            </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 px-4 bg-gradient-to-r from-[var(--kiul-emerald-700)] to-[var(--kiul-emerald-800)] text-white">
-          <div className="container mx-auto max-w-4xl text-center">
+        <section className="py-12 text-center">
             <h2 className="text-4xl font-bold mb-6">
               Ready to Begin Your Ubuntu Journey?
             </h2>
@@ -329,7 +322,6 @@ export default function SubscriptionsPage() {
                 Contact Us
               </a>
             </div>
-          </div>
         </section>
 
       <style jsx>{`
@@ -347,6 +339,6 @@ export default function SubscriptionsPage() {
           animation: fade-in 0.3s ease-out;
         }
       `}</style>
-    </StandardPageLayout>
+    </Container>
   );
 }

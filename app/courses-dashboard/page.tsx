@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import StandardPageLayout from '../components/StandardPageLayout';
+import Container from '../components/Container';
 import CourseCard from '../components/courses-dashboard/CourseCard';
 import CourseDetail from '../components/courses-dashboard/CourseDetail';
 
@@ -77,20 +77,42 @@ export default function CoursesDashboardPage() {
   });
 
   return (
-    <StandardPageLayout>
+    <Container>
       {/* Hero Section */}
-      <section className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-semibold leading-tight text-[var(--kiul-emerald-900)] mb-4">
+      <section className="text-center mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold text-[var(--kiul-text-dark)] mb-3">
           My Courses Dashboard
         </h1>
-        <p className="text-lg leading-relaxed text-gray-600 max-w-2xl mx-auto">
-          View and manage your saved short courses
+        <p className="text-base text-[var(--kiul-text-muted)] max-w-3xl mx-auto mb-4">
+          Welcome to your personal learning library. Here you can access all your saved Ubuntu-informed courses, track your progress, and manage your learning materials. Each course you generate and save from the Short Courses Generator will appear here for easy access anytime.
         </p>
+        <div className="flex flex-wrap gap-2 justify-center text-sm text-gray-600">
+          <span className="flex items-center gap-1">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+            </svg>
+            View all saved courses
+          </span>
+          <span className="text-gray-400">•</span>
+          <span className="flex items-center gap-1">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            Search and filter
+          </span>
+          <span className="text-gray-400">•</span>
+          <span className="flex items-center gap-1">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+            Manage your library
+          </span>
+        </div>
       </section>
 
       {/* Stats Section */}
-      <section className="-mx-4 sm:-mx-6 lg:-mx-8 bg-gradient-to-br from-[var(--kiul-emerald-50)] via-[var(--kiul-background)] to-[var(--kiul-emerald-50)] py-16 md:py-20 px-4 sm:px-6 lg:px-8 mb-12">
-        <div>
+      <section className="-mx-6 bg-gradient-to-br from-[var(--kiul-green-light)] via-[var(--kiul-background)] to-[var(--kiul-green-light)] py-12 px-6 mb-12">
+        <div className="max-w-[1280px] mx-auto">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-[var(--kiul-emerald-700)] rounded-xl flex items-center justify-center">
                 <svg
@@ -391,6 +413,6 @@ export default function CoursesDashboardPage() {
           </div>
         </div>
       )}
-    </StandardPageLayout>
+    </Container>
   );
 }
