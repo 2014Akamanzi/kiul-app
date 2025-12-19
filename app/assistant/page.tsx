@@ -43,7 +43,7 @@ export default function Assistant() {
                 </p>
                 <Link
                   href="/auth/signup"
-                  className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+                  className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
                 >
                   Register Now
                 </Link>

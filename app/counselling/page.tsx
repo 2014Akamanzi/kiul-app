@@ -45,7 +45,7 @@ export default function CounsellingPage() {
                 </p>
                 <Link
                   href="/auth/signup"
-                  className="inline-block px-6 py-3 bg-[var(--kiul-primary)] text-white rounded-lg hover:bg-orange-600 transition-colors font-medium"
+                  className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
                 >
                   Register Now
                 </Link>
