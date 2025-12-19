@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useAuth } from "../providers/AuthProvider";
+import Link from "next/link";
 import Container from '../components/Container';
 import CourseSelector from '@/app/components/shortcourses/CourseSelector';
 import SkillSelector from '@/app/components/shortcourses/SkillSelector';
@@ -14,6 +16,72 @@ const TIER_CONSTRAINTS = {
 };
 
 export default function ShortCoursesPage() {
+  const { user, loading } = useAuth();
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-blue-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show authentication required message
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 py-12 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
+            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="text-4xl">🔒</span>
+            </div>
+            <h1 className="text-3xl font-bold text-green-600 mb-4">
+              Authentication Required
+            </h1>
+            <p className="text-lg text-gray-600 mb-8">
+              To access the KIUL Short Courses service, you need to register and login first. 
+              This allows us to save your generated courses and track your learning progress.
+            </p>
+            <div className="space-y-4">
+              <div className="bg-green-50 rounded-lg p-6 mb-6">
+                <h2 className="font-semibold text-green-600 mb-2">New to KIUL?</h2>
+                <p className="text-sm text-gray-600 mb-4">
+                  Create a free account to access short courses, counselling, and mentorship.
+                </p>
+                <Link
+                  href="/auth/signup"
+                  className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                >
+                  Register Now
+                </Link>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h2 className="font-semibold text-green-600 mb-2">Already have an account?</h2>
+                <p className="text-sm text-gray-600 mb-4">
+                  Login to continue your Ubuntu-inspired learning journey.
+                </p>
+                <Link
+                  href="/auth/login"
+                  className="inline-block px-6 py-3 bg-white text-green-600 border-2 border-green-600 rounded-lg hover:bg-green-50 transition-colors font-medium"
+                >
+                  Login
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return <ShortCoursesContent />;
+}
+
+function ShortCoursesContent() {
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [selectedTier, setSelectedTier] = useState<'free' | 'standard' | 'premium'>('standard');

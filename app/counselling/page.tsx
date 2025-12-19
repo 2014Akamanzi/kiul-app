@@ -1,10 +1,78 @@
 "use client";
 
 import { useState } from "react";
+import { useAuth } from "../providers/AuthProvider";
+import Link from "next/link";
 import { shouldEscalate } from "@/app/lib/escalation";
 import { streamChatCompletion } from "@/app/lib/streamChat";
 
 export default function CounsellingPage() {
+  const { user, loading } = useAuth();
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 via-white to-blue-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--kiul-primary)] mx-auto mb-4"></div>
+          <p className="text-[var(--kiul-text-muted)]">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show authentication required message
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50 py-12 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
+            <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="text-4xl">🔒</span>
+            </div>
+            <h1 className="text-3xl font-bold text-[var(--kiul-primary)] mb-4">
+              Authentication Required
+            </h1>
+            <p className="text-lg text-[var(--kiul-text-muted)] mb-8">
+              To access the KIUL Counselling Companion service, you need to register and login first. 
+              This helps us provide personalized support and keep your conversations secure.
+            </p>
+            <div className="space-y-4">
+              <div className="bg-blue-50 rounded-lg p-6 mb-6">
+                <h2 className="font-semibold text-[var(--kiul-primary)] mb-2">New to KIUL?</h2>
+                <p className="text-sm text-[var(--kiul-text-muted)] mb-4">
+                  Create a free account to access counselling, mentorship, and short courses.
+                </p>
+                <Link
+                  href="/auth/signup"
+                  className="inline-block px-6 py-3 bg-[var(--kiul-primary)] text-white rounded-lg hover:bg-orange-600 transition-colors font-medium"
+                >
+                  Register Now
+                </Link>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h2 className="font-semibold text-[var(--kiul-primary)] mb-2">Already have an account?</h2>
+                <p className="text-sm text-[var(--kiul-text-muted)] mb-4">
+                  Login to continue your Ubuntu-inspired learning journey.
+                </p>
+                <Link
+                  href="/auth/login"
+                  className="inline-block px-6 py-3 bg-white text-[var(--kiul-primary)] border-2 border-[var(--kiul-primary)] rounded-lg hover:bg-orange-50 transition-colors font-medium"
+                >
+                  Login
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return <CounsellingContent />;
+}
+
+function CounsellingContent() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
