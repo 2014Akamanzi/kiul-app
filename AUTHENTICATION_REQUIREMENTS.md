@@ -1,20 +1,24 @@
 # Authentication Requirements for KIUL Services
 
 ## Overview
+
 All three main KIUL services now require users to register and authenticate before accessing them. This ensures personalized support, secure conversations, and proper tracking of user progress.
 
 ## Protected Services
 
 ### 1. 🧡 Counselling Companion (`/counselling`)
+
 **Authentication Required**: Yes
 
-**Why**: 
+**Why**:
+
 - Keeps conversations private and secure
 - Provides personalized emotional support
 - Maintains conversation history for continuity
 - Ensures crisis escalation contacts the right person
 
 **User Experience**:
+
 - Unauthenticated users see a lock screen with registration/login options
 - Authenticated users access the full counselling chat interface
 - Orange-themed authentication prompt matching the counselling branding
@@ -22,15 +26,18 @@ All three main KIUL services now require users to register and authenticate befo
 ---
 
 ### 2. 💙 Mentorship Pathways (`/mentorship`)
+
 **Authentication Required**: Yes
 
 **Why**:
+
 - Tracks individual career goals and progress
 - Provides personalized guidance based on user history
 - Saves mentorship sessions for future reference
 - Enables long-term development tracking
 
 **User Experience**:
+
 - Unauthenticated users see a lock screen with registration/login options
 - Authenticated users access the full mentorship chat interface
 - Blue-themed authentication prompt matching the mentorship branding
@@ -38,15 +45,18 @@ All three main KIUL services now require users to register and authenticate befo
 ---
 
 ### 3. 💚 Short Courses Generator (`/short-courses`)
+
 **Authentication Required**: Yes
 
 **Why**:
+
 - Saves generated courses to user's dashboard
 - Tracks learning progress across multiple courses
 - Enables course history and recommendations
 - Provides tier-based access control (Free/Standard/Premium)
 
 **User Experience**:
+
 - Unauthenticated users see a lock screen with registration/login options
 - Authenticated users access the course generator and selection tools
 - Green-themed authentication prompt matching the short courses branding
@@ -55,7 +65,8 @@ All three main KIUL services now require users to register and authenticate befo
 
 ## Authentication Flow
 
-### For New Users:
+### For New Users
+
 1. Visit any protected service page (counselling, mentorship, or short courses)
 2. See authentication required message with benefits explanation
 3. Click "Register Now" button
@@ -64,7 +75,8 @@ All three main KIUL services now require users to register and authenticate befo
 6. Automatic email verification via Supabase
 7. Login and access all services
 
-### For Existing Users:
+### For Existing Users
+
 1. Visit any protected service page
 2. See authentication required message
 3. Click "Login" button
@@ -72,7 +84,8 @@ All three main KIUL services now require users to register and authenticate befo
 5. Enter credentials
 6. Access all services immediately
 
-### For Already Logged-In Users:
+### For Already Logged-In Users
+
 - Direct access to all services
 - No authentication prompts
 - Seamless experience across all features
@@ -82,7 +95,9 @@ All three main KIUL services now require users to register and authenticate befo
 ## Technical Implementation
 
 ### Authentication Check
+
 Each protected page now includes:
+
 ```typescript
 const { user, loading } = useAuth();
 
@@ -101,12 +116,15 @@ return <ServiceContent />;
 ```
 
 ### Components Structure
+
 - **Main Component**: Handles authentication logic and routing
 - **Content Component**: Contains the actual service functionality
 - **Auth Prompt**: Shows registration/login options with service-specific messaging
 
 ### AuthProvider Integration
+
 Uses existing `AuthProvider` context to:
+
 - Check authentication status (`user`)
 - Show loading state while checking auth (`loading`)
 - Provide user information to service pages
@@ -116,7 +134,8 @@ Uses existing `AuthProvider` context to:
 
 ## Public vs Protected Pages
 
-### Public Pages (No Authentication Required):
+### Public Pages (No Authentication Required)
+
 - ✅ Home (`/`)
 - ✅ About (`/about`)
 - ✅ Contact (`/contact`)
@@ -125,7 +144,8 @@ Uses existing `AuthProvider` context to:
 - ✅ User Login (`/auth/login`)
 - ✅ User Signup (`/auth/signup`)
 
-### Protected Pages (Authentication Required):
+### Protected Pages (Authentication Required)
+
 - 🔒 Counselling Companion (`/counselling`)
 - 🔒 Mentorship Pathways (`/mentorship`)
 - 🔒 Short Courses Generator (`/short-courses`)
@@ -137,14 +157,16 @@ Uses existing `AuthProvider` context to:
 
 ## Benefits of Authentication
 
-### For Users:
+### For Users
+
 1. **Personalization**: Tailored recommendations and guidance
 2. **Progress Tracking**: See learning history and goals
 3. **Data Security**: Private conversations and saved content
 4. **Continuity**: Pick up where you left off across sessions
 5. **Multi-device**: Access from any device with same account
 
-### For KIUL:
+### For KIUL
+
 1. **User Engagement**: Track active users and popular features
 2. **Quality Control**: Identify and assist struggling users
 3. **Compliance**: Meet data protection requirements
@@ -155,13 +177,15 @@ Uses existing `AuthProvider` context to:
 
 ## Email Verification
 
-### Current Setup:
+### Current Setup
+
 - Supabase handles email verification automatically
 - New users receive verification email after signup
 - Users can login immediately (verification optional)
 - Verified users get full access to all features
 
-### Future Enhancement Options:
+### Future Enhancement Options
+
 - Require email verification before accessing services
 - Send welcome emails with platform overview
 - Periodic engagement emails with tips and updates
@@ -171,17 +195,19 @@ Uses existing `AuthProvider` context to:
 
 ## User Experience Design
 
-### Authentication Prompts Include:
+### Authentication Prompts Include
+
 1. **Visual Indicator**: 🔒 Lock icon in colored circle
 2. **Clear Heading**: "Authentication Required"
 3. **Service-Specific Messaging**: Explains why auth is needed for that specific service
-4. **Dual Options**: 
+4. **Dual Options**:
    - New users: "Register Now" (prominent CTA)
    - Existing users: "Login" (secondary CTA)
 5. **Benefits Listing**: Shows what users gain by registering
 6. **Service Branding**: Color scheme matches the service (orange/blue/green)
 
-### Loading States:
+### Loading States
+
 - Spinner animation while checking authentication
 - Prevents flash of wrong content
 - Smooth transition to authenticated or non-authenticated view
@@ -190,19 +216,22 @@ Uses existing `AuthProvider` context to:
 
 ## Troubleshooting
 
-### Users Report "Stuck on Loading":
+### Users Report "Stuck on Loading"
+
 - Check Supabase connection status
 - Verify `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in `.env.local`
 - Clear browser cache and cookies
 - Try incognito/private browsing mode
 
-### Users Can't Login:
+### Users Can't Login
+
 - Verify email verification status in Supabase dashboard
 - Check for correct email/password combination
 - Reset password if needed via `/auth/reset-password`
 - Contact admin if account is blocked
 
-### Authentication Loop (Redirects back and forth):
+### Authentication Loop (Redirects back and forth)
+
 - Check AuthProvider implementation
 - Verify Supabase session handling
 - Clear application state and refresh
@@ -212,18 +241,21 @@ Uses existing `AuthProvider` context to:
 
 ## Development Notes
 
-### Files Modified:
+### Files Modified
+
 - `/app/counselling/page.tsx` - Added auth check and prompt
 - `/app/mentorship/page.tsx` - Added auth check and prompt
 - `/app/short-courses/page.tsx` - Added auth check and prompt
 
-### Dependencies:
+### Dependencies
+
 - Uses existing `AuthProvider` from `/app/providers/AuthProvider.tsx`
 - Integrates with Supabase Auth system
 - Next.js Link component for navigation
 - No new packages required
 
-### Testing Checklist:
+### Testing Checklist
+
 - ✅ Unauthenticated users see lock screen
 - ✅ Registration link works and redirects correctly
 - ✅ Login link works and redirects correctly
@@ -236,7 +268,8 @@ Uses existing `AuthProvider` context to:
 
 ## Future Enhancements
 
-### Planned Features:
+### Planned Features
+
 1. **Social Authentication**: Google, GitHub, Apple sign-in
 2. **Session Management**: Remember device, stay logged in
 3. **User Profiles**: Edit profile, avatar, preferences
@@ -244,7 +277,8 @@ Uses existing `AuthProvider` context to:
 5. **Analytics Dashboard**: Track usage, engagement, retention
 6. **Notifications**: Email alerts for new features, updates
 
-### Security Improvements:
+### Security Improvements
+
 1. **Two-Factor Authentication**: SMS or authenticator app
 2. **Rate Limiting**: Prevent brute force attacks
 3. **Session Timeout**: Auto-logout after inactivity
@@ -256,11 +290,13 @@ Uses existing `AuthProvider` context to:
 ## Support
 
 For authentication-related issues:
-- **Email**: support@katokifoundation.org
+
+- **Email**: <support@katokifoundation.org>
 - **WhatsApp**: +255-758624863
 - **Documentation**: `/DEVELOPMENT_PROTOCOL.md`
 
 For feature requests or suggestions:
+
 - **GitHub Issues**: Submit enhancement requests
 - **Contact Form**: `/contact` page
 - **Admin Dashboard**: Flag for review
@@ -277,4 +313,5 @@ For feature requests or suggestions:
 ✅ Enhanced security and personalization for all users
 
 **Updated**: December 19, 2025
+
 **Version**: 1.0.0
