@@ -149,6 +149,8 @@ Uses existing `AuthProvider` context to:
 - 🔒 Counselling Companion (`/counselling`)
 - 🔒 Mentorship Pathways (`/mentorship`)
 - 🔒 Short Courses Generator (`/short-courses`)
+- 🔒 Course Generator (`/short-courses/generator`)
+- 🔒 KIUL AI Assistant (`/assistant`)
 - 🔒 User Dashboard (`/dashboard`)
 - 🔒 Courses Dashboard (`/courses-dashboard`)
 - 🔒 Admin Portal (`/admin/*`)
@@ -246,6 +248,8 @@ Uses existing `AuthProvider` context to:
 - `/app/counselling/page.tsx` - Added auth check and prompt
 - `/app/mentorship/page.tsx` - Added auth check and prompt
 - `/app/short-courses/page.tsx` - Added auth check and prompt
+- `/app/assistant/page.tsx` - Added auth check and prompt
+- `/app/short-courses/generator/page.tsx` - Added auth check and prompt
 
 ### Dependencies
 
@@ -305,7 +309,7 @@ For feature requests or suggestions:
 
 ## Summary
 
-✅ All three main services now require authentication
+✅ All five service pages now require authentication
 ✅ User-friendly prompts guide registration/login process
 ✅ Service-specific branding maintains consistency
 ✅ Existing AuthProvider handles all authentication logic

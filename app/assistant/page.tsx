@@ -1,8 +1,76 @@
 "use client";
 
 import { useState } from "react";
+import { useAuth } from "../providers/AuthProvider";
+import Link from "next/link";
 
 export default function Assistant() {
+  const { user, loading } = useAuth();
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-pink-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show authentication required message
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 py-12 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
+            <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="text-4xl">🔒</span>
+            </div>
+            <h1 className="text-3xl font-bold text-purple-600 mb-4">
+              Authentication Required
+            </h1>
+            <p className="text-lg text-gray-600 mb-8">
+              To access the KIUL AI Assistant service, you need to register and login first. 
+              This provides you with personalized assistance and access to all KIUL features.
+            </p>
+            <div className="space-y-4">
+              <div className="bg-purple-50 rounded-lg p-6 mb-6">
+                <h2 className="font-semibold text-purple-600 mb-2">New to KIUL?</h2>
+                <p className="text-sm text-gray-600 mb-4">
+                  Create a free account to access the AI assistant and all KIUL services.
+                </p>
+                <Link
+                  href="/auth/signup"
+                  className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+                >
+                  Register Now
+                </Link>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h2 className="font-semibold text-purple-600 mb-2">Already have an account?</h2>
+                <p className="text-sm text-gray-600 mb-4">
+                  Login to continue your Ubuntu-inspired learning journey.
+                </p>
+                <Link
+                  href="/auth/login"
+                  className="inline-block px-6 py-3 bg-white text-purple-600 border-2 border-purple-600 rounded-lg hover:bg-purple-50 transition-colors font-medium"
+                >
+                  Login
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return <AssistantContent />;
+}
+
+function AssistantContent() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
