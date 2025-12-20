@@ -77,47 +77,47 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="w-full px-4 py-6">
-      <h1 className="text-2xl font-bold text-[var(--kiul-text-dark)] mb-2">
+    <div className="w-full px-4 py-3">
+      <h1 className="text-xl font-bold text-[var(--kiul-text-dark)] mb-1">
         Your KIUL Dashboard
       </h1>
 
-      <p className="text-sm text-[var(--kiul-text-soft)] mb-6">
+      <p className="text-xs text-[var(--kiul-text-soft)] mb-3">
         Track your saved courses, mentorship goals, and learning progress.
       </p>
 
       <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {/* COURSES */}
           <section>
-            <h2 className="text-xl font-bold text-[var(--kiul-text-dark)] mb-4">
+            <h2 className="text-base font-bold text-[var(--kiul-text-dark)] mb-2">
               Saved Courses
             </h2>
 
             {courses.length === 0 && (
-              <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
-                <p className="text-sm text-[var(--kiul-text-soft)] mb-4">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                <p className="text-xs text-[var(--kiul-text-soft)] mb-2">
                   No saved courses yet.
                 </p>
                 <a
                   href="/short-courses/generator"
-                  className="inline-block px-6 py-3 bg-[var(--kiul-green)] text-white rounded-xl
-                             hover:bg-[var(--kiul-green-dark)] transition font-semibold"
+                  className="inline-block px-4 py-2 bg-white text-[var(--kiul-green)] border-2 border-[var(--kiul-green)] rounded-lg
+                             hover:bg-[var(--kiul-green)] hover:text-white transition font-semibold text-sm"
                 >
                   Create Your First Course
                 </a>
               </div>
             )}
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {courses.map((c, i) => (
                 <div
                   key={i}
-                  className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm
+                  className="border border-gray-200 rounded-lg p-3 bg-white shadow-sm
                              hover:shadow-md transition"
                 >
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="font-bold text-lg text-[var(--kiul-text-dark)]">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="font-bold text-sm text-[var(--kiul-text-dark)]">
                       {c.title}
                     </h3>
                     <span className="text-xs bg-[var(--kiul-green-light)] text-[var(--kiul-green)]
@@ -138,33 +138,33 @@ export default function Dashboard() {
 
           {/* GOALS */}
           <section>
-            <h2 className="text-2xl font-bold text-[var(--kiul-text-dark)] mb-6">
+            <h2 className="text-base font-bold text-[var(--kiul-text-dark)] mb-2">
               Mentorship Goals
             </h2>
 
             {goals.length === 0 && (
-              <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center">
-                <p className="text-sm text-[var(--kiul-text-soft)] mb-4">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                <p className="text-xs text-[var(--kiul-text-soft)] mb-2">
                   No saved goals yet.
                 </p>
                 <a
                   href="/mentorship"
-                  className="inline-block px-6 py-3 bg-[var(--kiul-green)] text-white rounded-xl
-                             hover:bg-[var(--kiul-green-dark)] transition font-semibold"
+                  className="inline-block px-4 py-2 bg-white text-[var(--kiul-green)] border-2 border-[var(--kiul-green)] rounded-lg
+                             hover:bg-[var(--kiul-green)] hover:text-white transition font-semibold text-sm"
                 >
                   Start Mentorship Journey
                 </a>
               </div>
             )}
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {goals.map((g, i) => (
                 <div
                   key={i}
-                  className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm
+                  className="border border-gray-200 rounded-lg p-3 bg-white shadow-sm
                              hover:shadow-md transition"
                 >
-                  <h3 className="font-bold text-lg text-[var(--kiul-text-dark)] mb-3">
+                  <h3 className="font-bold text-sm text-[var(--kiul-text-dark)] mb-2">
                     {g.goal}
                   </h3>
                   {g.steps && g.steps.length > 0 && (
@@ -194,36 +194,36 @@ export default function Dashboard() {
         </div>
 
         {/* Quick Actions */}
-        <section className="mt-12 pt-8 border-t border-gray-200">
-          <h2 className="text-xl font-semibold mb-6">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <section className="mt-4 pt-3 border-t border-gray-200">
+          <h2 className="text-base font-semibold mb-2">Quick Actions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <a
               href="/counselling"
-              className="block border rounded-xl p-6 hover:border-[var(--kiul-green)] transition bg-white"
+              className="block border-2 border-gray-300 rounded-lg p-3 hover:border-[var(--kiul-green)] transition bg-white"
             >
-              <div className="text-2xl mb-2">💬</div>
-              <div className="font-semibold mb-1">Counselling</div>
-              <div className="text-sm text-[var(--kiul-text-soft)]">
+              <div className="text-xl mb-1">💬</div>
+              <div className="font-semibold text-sm mb-0.5">Counselling</div>
+              <div className="text-xs text-[var(--kiul-text-soft)]">
                 Continue your reflection journey
               </div>
             </a>
             <a
               href="/mentorship"
-              className="block border rounded-xl p-6 hover:border-[var(--kiul-green)] transition bg-white"
+              className="block border-2 border-gray-300 rounded-lg p-3 hover:border-[var(--kiul-green)] transition bg-white"
             >
-              <div className="text-2xl mb-2">🌱</div>
-              <div className="font-semibold mb-1">Mentorship</div>
-              <div className="text-sm text-[var(--kiul-text-soft)]">
+              <div className="text-xl mb-1">🌱</div>
+              <div className="font-semibold text-sm mb-0.5">Mentorship</div>
+              <div className="text-xs text-[var(--kiul-text-soft)]">
                 Set new career goals
               </div>
             </a>
             <a
               href="/short-courses/generator"
-              className="block border rounded-xl p-6 hover:border-[var(--kiul-green)] transition bg-white"
+              className="block border-2 border-gray-300 rounded-lg p-3 hover:border-[var(--kiul-green)] transition bg-white"
             >
-              <div className="text-2xl mb-2">🎓</div>
-              <div className="font-semibold mb-1">Generate Course</div>
-              <div className="text-sm text-[var(--kiul-text-soft)]">
+              <div className="text-xl mb-1">🎓</div>
+              <div className="font-semibold text-sm mb-0.5">Generate Course</div>
+              <div className="text-xs text-[var(--kiul-text-soft)]">
                 Create a new learning path
               </div>
             </a>
