@@ -1,55 +1,36 @@
 export default function Home() {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {/* HERO SECTION */}
-      <section className="text-center py-1 border-b border-gray-100">
-        <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-1.5 leading-tight">
+      <section className="text-center py-4 border-b-2 border-[var(--kiul-green)]/20 bg-gradient-to-b from-green-50/30 to-white">
+        <h1 className="text-2xl md:text-3xl font-bold text-[var(--kiul-text-dark)] mb-2 leading-tight">
           Katoki Institute for Ubuntu Leadership
         </h1>
-
+        <p className="text-sm md:text-base text-[var(--kiul-text-soft)] mb-3 max-w-2xl mx-auto italic">
+          "I am because we are" — Empowering leaders through Ubuntu philosophy
+        </p>
         <div className="flex flex-wrap justify-center gap-2">
           <a
-            href="/counselling"
-            className="inline-flex items-center justify-center px-4 py-1.5 text-sm bg-blue-100 text-blue-900 font-semibold rounded-md hover:bg-blue-200 transition-colors shadow-sm border border-blue-300"
+            href="/auth/signup"
+            className="inline-flex items-center justify-center px-6 py-2.5 text-sm bg-[var(--kiul-green)] text-white font-bold rounded-lg hover:bg-green-700 transition-colors shadow-md"
           >
-            Counselling
+            Get Started Free
           </a>
-
           <a
-            href="/mentorship"
-            className="inline-flex items-center justify-center px-4 py-1.5 text-sm bg-emerald-100 text-emerald-900 font-semibold rounded-md hover:bg-emerald-200 transition-colors shadow-sm border border-emerald-300"
+            href="/about"
+            className="inline-flex items-center justify-center px-6 py-2.5 text-sm bg-white text-[var(--kiul-green)] font-semibold rounded-lg hover:bg-green-50 transition-colors shadow-sm border-2 border-[var(--kiul-green)]"
           >
-            Mentorship
-          </a>
-
-          <a
-            href="/publishing"
-            className="inline-flex items-center justify-center px-4 py-1.5 text-sm bg-purple-100 text-purple-900 font-semibold rounded-md hover:bg-purple-200 transition-colors shadow-sm border border-purple-300"
-          >
-            Publishing
-          </a>
-
-          <a
-            href="/short-courses"
-            className="inline-flex items-center justify-center px-4 py-1.5 text-sm bg-orange-100 text-orange-900 font-semibold rounded-md hover:bg-orange-200 transition-colors shadow-sm border border-orange-300"
-          >
-            Short Courses
-          </a>
-
-          <a
-            href="/membership"
-            className="inline-flex items-center justify-center px-4 py-1.5 text-sm bg-teal-100 text-teal-900 font-semibold rounded-md hover:bg-teal-200 transition-colors shadow-sm border border-teal-300"
-          >
-            Membership
+            Learn More
           </a>
         </div>
       </section>
 
       {/* CORE SERVICES */}
       <section>
-        <h2 className="text-sm font-bold text-gray-900 mb-1">
-          Core Services
+        <h2 className="text-base font-bold text-[var(--kiul-text-dark)] mb-2 flex items-center gap-2">
+          <span className="text-[var(--kiul-green)]">●</span> Our Ubuntu Services
         </h2>
+        <p className="text-xs text-[var(--kiul-text-soft)] mb-2">Comprehensive support for your learning and growth journey</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <ServiceCard
@@ -83,32 +64,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* JOURNAL & DASHBOARDS */}
+      {/* ACADEMIC PUBLISHING */}
       <section>
-        <h2 className="text-sm font-bold text-gray-900 mb-1">
-          Journal Portal
+        <h2 className="text-base font-bold text-[var(--kiul-text-dark)] mb-2 flex items-center gap-2">
+          <span className="text-[var(--kiul-green)]">●</span> Academic Publishing
         </h2>
+        <p className="text-xs text-[var(--kiul-text-soft)] mb-2">Share and discover scholarly research</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           <ServiceCard
             title="Search Articles"
-            link="/journal/search"
+            link="/publishing/search"
             icon="🔍"
             description="Explore published research and scholarly articles"
             colorClass="bg-blue-50"
           />
           <ServiceCard
-            title="Author Dashboard"
-            link="/author/dashboard"
+            title="Submit Manuscript"
+            link="/publishing"
             icon="📝"
-            description="Submit and track your manuscript submissions"
+            description="Submit your research for publication"
             colorClass="bg-orange-50"
           />
           <ServiceCard
-            title="Reviewer Dashboard"
-            link="/reviewer/dashboard"
+            title="Publishing Portal"
+            link="/publishing"
             icon="📋"
-            description="Review manuscripts and provide feedback"
+            description="Manage submissions and track your publications"
             colorClass="bg-teal-50"
           />
         </div>
@@ -116,16 +98,17 @@ export default function Home() {
 
       {/* INSTITUTIONAL PAGES */}
       <section>
-        <h2 className="text-sm font-bold text-gray-900 mb-1">
-          Institutional Pages
+        <h2 className="text-base font-bold text-[var(--kiul-text-dark)] mb-2 flex items-center gap-2">
+          <span className="text-[var(--kiul-green)]">●</span> About KIUL
         </h2>
+        <p className="text-xs text-[var(--kiul-text-soft)] mb-2">Learn more about our institution and community</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <ServiceCard 
-            title="About KIUL" 
+            title="About" 
             link="/about" 
             icon="🏛️" 
-            description="Learn about our mission, vision, and Ubuntu philosophy"
+            description="Our mission, vision, and Ubuntu philosophy"
             colorClass="bg-slate-50"
           />
           <ServiceCard 
