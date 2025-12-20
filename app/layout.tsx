@@ -37,8 +37,8 @@ export default function RootLayout({
           <Navbar />
 
           {/* MAIN CENTERED WRAPPER */}
-          <main className="w-full flex justify-center pt-8 pb-20">
-            <div className="max-w-[1200px] w-full px-6">
+          <main className="w-full flex justify-center pt-8 pb-20 px-4 md:px-8">
+            <div className="max-w-[1200px] w-full bg-white shadow-lg rounded-lg border border-gray-200 px-6 py-4">
               {children}
             </div>
           </main>
