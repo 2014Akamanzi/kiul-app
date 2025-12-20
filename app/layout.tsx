@@ -37,14 +37,16 @@ export default function RootLayout({
           <Navbar />
 
           {/* MAIN CENTERED WRAPPER */}
-          <main className="w-full flex justify-center pt-8 pb-20 px-4 md:px-8">
-            <div className="max-w-[1200px] w-full bg-white shadow-lg rounded-lg border border-gray-200 px-6 py-4">
-              {children}
+          <main className="w-full flex justify-center pt-8 pb-8 px-4 md:px-8">
+            <div className="max-w-[1200px] w-full">
+              <div className="bg-white shadow-lg rounded-lg border border-gray-200 px-6 py-4 mb-6">
+                {children}
+              </div>
+              
+              {/* FOOTER */}
+              <Footer />
             </div>
           </main>
-
-          {/* FOOTER */}
-          <Footer />
 
           <AssistantButton />
         </AuthProvider>

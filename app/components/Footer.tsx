@@ -1,17 +1,17 @@
 export default function Footer() {
   return (
-    <footer className="w-full border-t mt-8 bg-white">
-      <div className="max-w-[1200px] mx-auto px-6 py-4 text-center">
+    <footer className="w-full border-t bg-white py-3">
+      <div className="text-center">
 
-        <p className="text-[var(--kiul-text-dark)] text-sm font-semibold mb-1">
+        <p className="text-[var(--kiul-text-dark)] text-sm font-semibold">
           © {new Date().getFullYear()} Katoki Institute for Ubuntu Leadership (KIUL)
         </p>
 
-        <p className="text-[var(--kiul-text-soft)] text-xs mb-2">
+        <p className="text-[var(--kiul-text-soft)] text-xs mt-0.5">
           Promoting Ubuntu leadership, scholarship, and community empowerment in Africa.
         </p>
 
-        <div className="flex flex-wrap gap-2 justify-center items-center text-xs text-[var(--kiul-text-soft)]">
+        <div className="flex flex-wrap gap-2 justify-center items-center text-xs text-[var(--kiul-text-soft)] mt-1">
           <a 
             href="https://wa.me/255758624863" 
             target="_blank" 
