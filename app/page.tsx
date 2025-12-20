@@ -6,7 +6,7 @@ export default function Home() {
         <h1 className="text-2xl md:text-3xl font-bold text-[var(--kiul-text-dark)] mb-2 leading-tight">
           Katoki Institute for Ubuntu Leadership
         </h1>
-        <p className="text-base md:text-lg font-semibold text-[var(--kiul-green)] text-center">
+        <p className="text-lg md:text-xl font-semibold text-[var(--kiul-green)] text-center italic">
           Empowerment through Ubuntu
         </p>
       </section>
