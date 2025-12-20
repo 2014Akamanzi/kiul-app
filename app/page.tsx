@@ -6,23 +6,9 @@ export default function Home() {
         <h1 className="text-2xl md:text-3xl font-bold text-[var(--kiul-text-dark)] mb-2 leading-tight">
           Katoki Institute for Ubuntu Leadership
         </h1>
-        <p className="text-sm md:text-base text-[var(--kiul-text-soft)] mb-3 max-w-2xl mx-auto italic">
-          "I am because we are" — Empowering leaders through Ubuntu philosophy
+        <p className="text-base md:text-lg font-semibold text-[var(--kiul-green)] text-center">
+          Empowerment through Ubuntu
         </p>
-        <div className="flex flex-wrap justify-center gap-2">
-          <a
-            href="/auth/signup"
-            className="inline-flex items-center justify-center px-6 py-2.5 text-sm bg-[var(--kiul-green)] text-white font-bold rounded-lg hover:bg-green-700 transition-colors shadow-md"
-          >
-            Get Started Free
-          </a>
-          <a
-            href="/about"
-            className="inline-flex items-center justify-center px-6 py-2.5 text-sm bg-white text-[var(--kiul-green)] font-semibold rounded-lg hover:bg-green-50 transition-colors shadow-sm border-2 border-[var(--kiul-green)]"
-          >
-            Learn More
-          </a>
-        </div>
       </section>
 
       {/* CORE SERVICES */}
