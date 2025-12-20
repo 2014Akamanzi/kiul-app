@@ -8,7 +8,7 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- ========================================
--- 1. PROFILES TABLE (User Management)
+-- 2. PROFILES TABLE (User Management)
 -- ========================================
 
 CREATE TABLE IF NOT EXISTS public.profiles (
@@ -42,7 +42,7 @@ CREATE TRIGGER on_auth_user_created
   FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
 -- ========================================
--- 2. COURSES TABLE (Short Courses)
+-- 3. COURSES TABLE (Short Courses)
 -- ========================================
 
 CREATE TABLE IF NOT EXISTS public.courses (
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS public.courses (
 );
 
 -- ========================================
--- 3. MENTORSHIP GOALS TABLE
+-- 4. MENTORSHIP GOALS TABLE
 -- ========================================
 
 CREATE TABLE IF NOT EXISTS public.mentorship_goals (
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS public.mentorship_goals (
 );
 
 -- ========================================
--- 4. COUNSELLING SESSIONS TABLE
+-- 5. COUNSELLING SESSIONS TABLE
 -- ========================================
 
 CREATE TABLE IF NOT EXISTS public.counselling_sessions (
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS public.counselling_sessions (
 );
 
 -- ========================================
--- 5. LEARNING MATERIALS TABLE (Admin)
+-- 6. LEARNING MATERIALS TABLE (Admin)
 -- ========================================
 
 CREATE TABLE IF NOT EXISTS public.learning_materials (
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS public.learning_materials (
 );
 
 -- ========================================
--- 6. STORAGE BUCKET (Learning Materials)
+-- 7. STORAGE BUCKET (Learning Materials)
 -- ========================================
 
 INSERT INTO storage.buckets (id, name, public)
@@ -104,7 +104,7 @@ VALUES ('learning-materials', 'learning-materials', true)
 ON CONFLICT (id) DO NOTHING;
 
 -- ========================================
--- 7. ROW LEVEL SECURITY (RLS) POLICIES
+-- 8. ROW LEVEL SECURITY (RLS) POLICIES
 -- ========================================
 
 -- Enable RLS on all tables
@@ -124,7 +124,7 @@ CREATE POLICY "Users can update own profile" ON public.profiles
 CREATE POLICY "Admins can view all profiles" ON public.profiles
   FOR SELECT USING (
     EXISTS (
-      SELECT 1 FROM public.profiles
+      SELECT 2 FROM public.profiles
       WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
     )
   );
@@ -172,7 +172,7 @@ CREATE POLICY "Authenticated users can view materials" ON public.learning_materi
 CREATE POLICY "Admins can insert materials" ON public.learning_materials
   FOR INSERT TO authenticated WITH CHECK (
     EXISTS (
-      SELECT 1 FROM public.profiles
+      SELECT 2 FROM public.profiles
       WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
     )
   );
@@ -180,7 +180,7 @@ CREATE POLICY "Admins can insert materials" ON public.learning_materials
 CREATE POLICY "Admins can update materials" ON public.learning_materials
   FOR UPDATE TO authenticated USING (
     EXISTS (
-      SELECT 1 FROM public.profiles
+      SELECT 2 FROM public.profiles
       WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
     )
   );
@@ -188,7 +188,7 @@ CREATE POLICY "Admins can update materials" ON public.learning_materials
 CREATE POLICY "Admins can delete materials" ON public.learning_materials
   FOR DELETE TO authenticated USING (
     EXISTS (
-      SELECT 1 FROM public.profiles
+      SELECT 2 FROM public.profiles
       WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
     )
   );
@@ -201,7 +201,7 @@ CREATE POLICY "Admins can upload files" ON storage.objects
   FOR INSERT TO authenticated WITH CHECK (
     bucket_id = 'learning-materials' AND
     EXISTS (
-      SELECT 1 FROM public.profiles
+      SELECT 2 FROM public.profiles
       WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
     )
   );
@@ -210,13 +210,13 @@ CREATE POLICY "Admins can delete files" ON storage.objects
   FOR DELETE TO authenticated USING (
     bucket_id = 'learning-materials' AND
     EXISTS (
-      SELECT 1 FROM public.profiles
+      SELECT 2 FROM public.profiles
       WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
     )
   );
 
 -- ========================================
--- 8. INDEXES (Performance Optimization)
+-- 9. INDEXES (Performance Optimization)
 -- ========================================
 
 CREATE INDEX IF NOT EXISTS idx_courses_user_id ON public.courses(user_id);
@@ -228,8 +228,8 @@ CREATE INDEX IF NOT EXISTS idx_profiles_role ON public.profiles(role);
 -- SETUP COMPLETE!
 -- ========================================
 -- Next steps:
--- 1. Register a user through your app
--- 2. Find that user in the profiles table
--- 3. Change their role to 'admin' to access admin features
--- 4. Restart your development server
+-- 2. Register a user through your app
+-- 3. Find that user in the profiles table
+-- 4. Change their role to 'admin' to access admin features
+-- 5. Restart your development server
 -- ========================================
