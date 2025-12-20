@@ -24,40 +24,40 @@ export default function CounsellingPage() {
   // Show authentication required message
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50 py-12 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50 py-4 px-4">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
-            <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-4xl">🔒</span>
+          <div className="bg-white rounded-xl shadow-lg p-4 md:p-6 text-center">
+            <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <span className="text-3xl">🔒</span>
             </div>
-            <h1 className="text-3xl font-bold text-[var(--kiul-primary)] mb-4">
+            <h1 className="text-xl font-bold text-[var(--kiul-primary)] mb-2">
               Authentication Required
             </h1>
-            <p className="text-lg text-[var(--kiul-text-muted)] mb-8">
+            <p className="text-sm text-[var(--kiul-text-muted)] mb-4">
               To access the KIUL Counselling Companion service, you need to register and login first. 
               This helps us provide personalized support and keep your conversations secure.
             </p>
-            <div className="space-y-4">
-              <div className="bg-blue-50 rounded-lg p-6 mb-6">
-                <h2 className="font-semibold text-[var(--kiul-primary)] mb-2">New to KIUL?</h2>
-                <p className="text-sm text-[var(--kiul-text-muted)] mb-4">
+            <div className="space-y-2">
+              <div className="bg-blue-50 rounded-lg p-3 mb-2">
+                <h2 className="font-semibold text-sm text-[var(--kiul-primary)] mb-1">New to KIUL?</h2>
+                <p className="text-xs text-[var(--kiul-text-muted)] mb-2">
                   Create a free account to access counselling, mentorship, and short courses.
                 </p>
                 <Link
                   href="/auth/signup"
-                  className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                  className="inline-block px-4 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
                 >
                   Register Now
                 </Link>
               </div>
-              <div className="bg-gray-50 rounded-lg p-6">
-                <h2 className="font-semibold text-[var(--kiul-primary)] mb-2">Already have an account?</h2>
-                <p className="text-sm text-[var(--kiul-text-muted)] mb-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <h2 className="font-semibold text-sm text-[var(--kiul-primary)] mb-1">Already have an account?</h2>
+                <p className="text-xs text-[var(--kiul-text-muted)] mb-2">
                   Login to continue your Ubuntu-inspired learning journey.
                 </p>
                 <Link
                   href="/auth/login"
-                  className="inline-block px-6 py-3 bg-white text-[var(--kiul-primary)] border-2 border-[var(--kiul-primary)] rounded-lg hover:bg-orange-50 transition-colors font-medium"
+                  className="inline-block px-4 py-2 text-sm bg-white text-[var(--kiul-primary)] border-2 border-[var(--kiul-primary)] rounded-lg hover:bg-orange-50 transition-colors font-medium"
                 >
                   Login
                 </Link>
@@ -167,23 +167,23 @@ function CounsellingContent() {
 
   return (
     <div className="w-full">
-      <h1 className="text-3xl font-bold text-[var(--kiul-text-dark)] mb-3">
+      <h1 className="text-xl font-bold text-[var(--kiul-text-dark)] mb-2">
         Counselling Companion
       </h1>
 
-      <p className="text-[16px] text-[var(--kiul-text-soft)] mb-4 max-w-3xl">
+      <p className="text-sm text-[var(--kiul-text-soft)] mb-3 max-w-3xl">
         A gentle Ubuntu-inspired space for emotional reflection and support.
       </p>
 
       {/* Introduction */}
-      <div className="max-w-3xl mb-8 p-6 bg-gradient-to-r from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-xl">
-        <h2 className="text-xl font-bold text-gray-900 mb-3">Welcome to Your Safe Space</h2>
-        <p className="text-gray-700 mb-3 leading-relaxed">
+      <div className="max-w-3xl mb-4 p-3 bg-gradient-to-r from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-lg">
+        <h2 className="text-base font-bold text-gray-900 mb-2">Welcome to Your Safe Space</h2>
+        <p className="text-sm text-gray-700 mb-2 leading-relaxed">
           This is a confidential space where you can share your thoughts, feelings, and concerns. 
           Our AI counselling companion is here to listen with empathy, grounded in Ubuntu philosophy 
           — <em>"I am because we are."</em>
         </p>
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-sm text-gray-700 leading-relaxed">
           <strong>How it works:</strong> Simply type your thoughts in the chat below. The companion 
           will respond with care, offering reflections and support. Remember, this is a supportive tool, 
           not a replacement for professional therapy. If you're in crisis, please reach out to our team directly.
@@ -191,7 +191,7 @@ function CounsellingContent() {
       </div>
 
       {/* Subscription Tiers */}
-      <div className="max-w-md mx-auto mb-12 text-center">
+      <div className="max-w-md mx-auto mb-4 text-center">
         <h2 className="text-xs font-semibold mb-3 text-gray-500">Choose Your Tier</h2>
         <div className="grid grid-cols-3 gap-2">
           <div className="border border-blue-300 rounded-lg p-2 bg-blue-50 shadow-sm">
@@ -226,11 +226,11 @@ function CounsellingContent() {
 
       {/* Safety Warning Banner */}
       {showSafetyWarning && (
-        <div className="max-w-[900px] mx-auto mb-6 p-4 bg-red-50 border-2 border-red-300 rounded-xl">
-          <p className="text-red-800 font-semibold mb-2">
+        <div className="max-w-[900px] mx-auto mb-3 p-3 bg-red-50 border-2 border-red-300 rounded-lg">
+          <p className="text-sm text-red-800 font-semibold mb-1">
             🔴 Crisis Support Available
           </p>
-          <p className="text-sm text-red-700">
+          <p className="text-xs text-red-700">
             If you are in immediate danger, please reach out to our crisis team
             or local emergency services.
           </p>
@@ -240,7 +240,7 @@ function CounsellingContent() {
       {/* Chat Interface */}
       <div className="max-w-[750px] mx-auto">
         <div 
-          className="overflow-y-auto mb-3 space-y-3 p-6 border-2 border-emerald-200 rounded-2xl bg-gradient-to-b from-emerald-50/30 to-white shadow-sm"
+          className="overflow-y-auto mb-2 space-y-2 p-4 border-2 border-emerald-200 rounded-xl bg-gradient-to-b from-emerald-50/30 to-white shadow-sm"
           style={{
             minHeight: messages.length <= 2 ? '250px' : 'auto',
             maxHeight: '600px'

@@ -23,40 +23,40 @@ export default function CourseGenerator() {
   // Show authentication required message
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-12 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-4 px-4">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
-            <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-4xl">🔒</span>
+          <div className="bg-white rounded-xl shadow-lg p-4 md:p-6 text-center">
+            <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <span className="text-3xl">🔒</span>
             </div>
-            <h1 className="text-3xl font-bold text-teal-600 mb-4">
+            <h1 className="text-xl font-bold text-teal-600 mb-2">
               Authentication Required
             </h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-sm text-gray-600 mb-4">
               To access the KIUL Course Generator service, you need to register and login first. 
               This allows you to create, save, and track your personalized courses.
             </p>
-            <div className="space-y-4">
-              <div className="bg-teal-50 rounded-lg p-6 mb-6">
-                <h2 className="font-semibold text-teal-600 mb-2">New to KIUL?</h2>
-                <p className="text-sm text-gray-600 mb-4">
+            <div className="space-y-2">
+              <div className="bg-teal-50 rounded-lg p-3 mb-2">
+                <h2 className="font-semibold text-sm text-teal-600 mb-1">New to KIUL?</h2>
+                <p className="text-xs text-gray-600 mb-2">
                   Create a free account to generate Ubuntu-inspired courses and access all services.
                 </p>
                 <Link
                   href="/auth/signup"
-                  className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                  className="inline-block px-4 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
                 >
                   Register Now
                 </Link>
               </div>
-              <div className="bg-gray-50 rounded-lg p-6">
-                <h2 className="font-semibold text-teal-600 mb-2">Already have an account?</h2>
-                <p className="text-sm text-gray-600 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <h2 className="font-semibold text-sm text-teal-600 mb-1">Already have an account?</h2>
+                <p className="text-xs text-gray-600 mb-2">
                   Login to continue your Ubuntu-inspired learning journey.
                 </p>
                 <Link
                   href="/auth/login"
-                  className="inline-block px-6 py-3 bg-white text-teal-600 border-2 border-teal-600 rounded-lg hover:bg-teal-50 transition-colors font-medium"
+                  className="inline-block px-4 py-2 text-sm bg-white text-teal-600 border-2 border-teal-600 rounded-lg hover:bg-teal-50 transition-colors font-medium"
                 >
                   Login
                 </Link>

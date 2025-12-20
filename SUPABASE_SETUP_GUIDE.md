@@ -119,5 +119,5 @@ npm run dev
 ## Need Help?
 
 - Supabase Documentation: [https://supabase.com/docs](https://supabase.com/docs)
-- KIUL Support: counselling@katokifoundation.org
+- KIUL Support: <counselling@katokifoundation.org>
 - WhatsApp: +255-758624863

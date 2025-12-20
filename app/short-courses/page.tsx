@@ -33,16 +33,16 @@ export default function ShortCoursesPage() {
   // Show authentication required message
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 py-12 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 py-4 px-4">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-4xl">🔒</span>
+          <div className="bg-white rounded-xl shadow-lg p-4 md:p-6 text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <span className="text-3xl">🔒</span>
             </div>
-            <h1 className="text-3xl font-bold text-green-600 mb-4">
+            <h1 className="text-xl font-bold text-green-600 mb-2">
               Authentication Required
             </h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-sm text-gray-600 mb-4">
               To access the KIUL Short Courses service, you need to register and login first. 
               This allows us to save your generated courses and track your learning progress.
             </p>
@@ -193,11 +193,11 @@ function ShortCoursesContent() {
     <div className="w-full min-h-screen bg-gradient-to-b from-blue-50/30 to-white">
       <div className="max-w-5xl mx-auto px-4">
         {/* PAGE HEADER */}
-        <section className="text-center mb-6 pt-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-[var(--kiul-emerald-900)] mb-3">
+        <section className="text-center mb-3 pt-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-[var(--kiul-emerald-900)] mb-2">
             KIUL Short Courses Generator
           </h1>
-          <p className="text-sm text-gray-600 max-w-2xl mx-auto mb-2">
+          <p className="text-xs text-gray-600 max-w-2xl mx-auto mb-1">
             Create personalized short courses combining practical skills with Ubuntu-informed pedagogy. 
             Choose your tier, select courses and skills, then generate your customized learning path.
           </p>

@@ -22,40 +22,41 @@ export default function MentorshipPage() {
   // Show authentication required message
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-4 px-4">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
-            <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-4xl">🔒</span>
+          <div className="bg-white rounded-xl shadow-lg p-4 md:p-6 text-center">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <span className="text-3xl">🔒</span>
             </div>
-            <h1 className="text-3xl font-bold text-blue-600 mb-4">
+            <h1 className="text-xl font-bold text-blue-600 mb-2">
               Authentication Required
             </h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-sm text-gray-600 mb-4">
               To access the KIUL Mentorship Pathways service, you need to register and login first. 
               This helps us track your progress and provide personalized guidance.
             </p>
             <div className="space-y-4">
               <div className="bg-blue-50 rounded-lg p-6 mb-6">
-                <h2 className="font-semibold text-blue-600 mb-2">New to KIUL?</h2>
-                <p className="text-sm text-gray-600 mb-4">
+              <div className="bg-blue-50 rounded-lg p-3 mb-2">
+                <h2 className="font-semibold text-sm text-blue-600 mb-1">New to KIUL?</h2>
+                <p className="text-xs text-gray-600 mb-2">
                   Create a free account to access mentorship, counselling, and short courses.
                 </p>
                 <Link
                   href="/auth/signup"
-                  className="inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                  className="inline-block px-4 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
                 >
                   Register Now
                 </Link>
               </div>
-              <div className="bg-gray-50 rounded-lg p-6">
-                <h2 className="font-semibold text-blue-600 mb-2">Already have an account?</h2>
-                <p className="text-sm text-gray-600 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <h2 className="font-semibold text-sm text-blue-600 mb-1">Already have an account?</h2>
+                <p className="text-xs text-gray-600 mb-2">
                   Login to continue your Ubuntu-inspired learning journey.
                 </p>
                 <Link
                   href="/auth/login"
-                  className="inline-block px-6 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium"
+                  className="inline-block px-4 py-2 text-sm bg-white text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium"
                 >
                   Login
                 </Link>
@@ -145,8 +146,8 @@ function MentorshipContent() {
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-emerald-50/30 to-white">
       {/* PAGE HEADER */}
-      <div className="max-w-4xl mx-auto px-4 pt-8 pb-6">
-        <h1 className="text-3xl md:text-4xl font-bold text-[var(--kiul-text-dark)] mb-3">
+      <div className="max-w-4xl mx-auto px-4 pt-4 pb-3">
+        <h1 className="text-2xl md:text-3xl font-bold text-[var(--kiul-text-dark)] mb-2">
           KIUL Mentorship Pathways
         </h1>
 
@@ -156,18 +157,18 @@ function MentorshipContent() {
       </div>
 
       {/* INTRODUCTION SECTION */}
-      <div className="max-w-4xl mx-auto px-4 mb-8">
-        <div className="bg-white rounded-2xl border-2 border-emerald-200 p-6 shadow-md">
-          <h2 className="text-xl font-bold text-emerald-800 mb-3">Welcome to Your Mentorship Journey</h2>
-          <p className="text-sm text-gray-700 leading-relaxed mb-3">
+      <div className="max-w-4xl mx-auto px-4 mb-4">
+        <div className="bg-white rounded-lg border-2 border-emerald-200 p-3 shadow-md">
+          <h2 className="text-base font-bold text-emerald-800 mb-2">Welcome to Your Mentorship Journey</h2>
+          <p className="text-xs text-gray-700 leading-relaxed mb-2">
             KIUL Mentorship is designed to support your career exploration, skills development, and purposeful direction through Ubuntu philosophy. Whether you're exploring career options, planning your next steps, or seeking guidance on professional growth, our AI mentorship companion is here to help.
           </p>
-          <p className="text-sm text-gray-700 leading-relaxed mb-3">
+          <p className="text-xs text-gray-700 leading-relaxed mb-2">
             <span className="font-semibold">How it works:</span> Share your goals, questions, or challenges. Our mentorship guide will provide personalized advice, help you map your career pathway, and support your professional development journey. Your conversations grow more insightful as we learn about your aspirations and strengths.
           </p>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-xs text-gray-700 leading-relaxed">
             This Ubuntu mentorship guide supports career exploration, skills development, and purposeful direction. Your growth journey is shaped by relationships, choices, and continuous learning.
-            <span className="block mt-2 text-emerald-700 italic font-semibold">
+            <span className="block mt-1 text-emerald-700 italic font-semibold text-xs">
               "Umuntu ngumuntu ngabantu" — We become through each other.
             </span>
           </p>
@@ -175,7 +176,7 @@ function MentorshipContent() {
       </div>
 
       {/* Subscription Tiers */}
-      <div className="max-w-md mx-auto px-4 mb-12 text-center">
+      <div className="max-w-md mx-auto px-4 mb-4 text-center">
         <h2 className="text-xs font-semibold mb-3 text-gray-500">Choose Your Tier</h2>
         <div className="grid grid-cols-3 gap-2">
           <div className="border border-blue-300 rounded-lg p-2 bg-blue-50 shadow-sm">
