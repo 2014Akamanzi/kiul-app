@@ -5,7 +5,12 @@ import { useAuth } from "@/app/providers/AuthProvider";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { isAdmin } = useAuth();
+  const { isAdmin, user, signOut } = useAuth();
+
+  const handleLogout = async () => {
+    await signOut();
+    window.location.href = "/";
+  };
 
   const menu = [
     { label: "Home", href: "/" },
@@ -53,6 +58,24 @@ export default function Navbar() {
               🔐 Admin
             </Link>
           )}
+          {user && (
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-semibold
+                         hover:bg-red-700 transition"
+            >
+              Logout
+            </button>
+          )}
+          {!user && (
+            <Link
+              href="/auth/login"
+              className="px-4 py-2 bg-[var(--kiul-green)] text-white rounded-lg text-sm font-semibold
+                         hover:bg-green-700 transition"
+            >
+              Login
+            </Link>
+          )}
         </div>
 
         {/* MOBILE BUTTON */}
@@ -85,6 +108,28 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
             >
               🔐 Admin Portal
+            </Link>
+          )}
+          {user && (
+            <button
+              onClick={() => {
+                setOpen(false);
+                handleLogout();
+              }}
+              className="w-full text-left px-3 py-2 bg-red-600 text-white rounded-lg text-sm font-semibold
+                         hover:bg-red-700 transition"
+            >
+              Logout
+            </button>
+          )}
+          {!user && (
+            <Link
+              href="/auth/login"
+              className="block px-3 py-2 bg-[var(--kiul-green)] text-white rounded-lg text-sm font-semibold
+                         hover:bg-green-700 transition"
+              onClick={() => setOpen(false)}
+            >
+              Login
             </Link>
           )}
         </div>

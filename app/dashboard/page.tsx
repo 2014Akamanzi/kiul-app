@@ -77,25 +77,25 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="w-full">
-      <h1 className="text-3xl font-bold text-[var(--kiul-text-dark)] mb-3">
+    <div className="w-full px-4 py-6">
+      <h1 className="text-2xl font-bold text-[var(--kiul-text-dark)] mb-2">
         Your KIUL Dashboard
       </h1>
 
-      <p className="text-[17px] text-[var(--kiul-text-soft)] mb-10">
+      <p className="text-sm text-[var(--kiul-text-soft)] mb-6">
         Track your saved courses, mentorship goals, and learning progress.
       </p>
 
       <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* COURSES */}
           <section>
-            <h2 className="text-2xl font-bold text-[var(--kiul-text-dark)] mb-6">
+            <h2 className="text-xl font-bold text-[var(--kiul-text-dark)] mb-4">
               Saved Courses
             </h2>
 
             {courses.length === 0 && (
-              <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center">
+              <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
                 <p className="text-sm text-[var(--kiul-text-soft)] mb-4">
                   No saved courses yet.
                 </p>
