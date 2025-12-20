@@ -14,12 +14,12 @@ export default function Navbar() {
 
   const menu = [
     { label: "Home", href: "/" },
-    { label: "About KIUL", href: "/about" },
+    { label: "About", href: "/about" },
     { label: "Publishing", href: "/publishing" },
     { label: "Search", href: "/publishing/search" },
     { label: "Counselling", href: "/counselling" },
     { label: "Mentorship", href: "/mentorship" },
-    { label: "Short Courses", href: "/short-courses" },
+    { label: "Courses", href: "/short-courses" },
     { label: "Dashboard", href: "/dashboard" },
     { label: "Membership", href: "/membership" },
     { label: "News", href: "/news" },
@@ -39,12 +39,12 @@ export default function Navbar() {
         </Link>
 
         {/* DESKTOP MENU */}
-        <div className="hidden md:flex gap-6 items-center">
+        <div className="hidden md:flex gap-3 items-center">
           {menu.map((m) => (
             <Link
               key={m.href}
               href={m.href}
-              className="text-[var(--kiul-text-soft)] hover:text-[var(--kiul-green)] transition"
+              className="text-sm font-semibold text-[var(--kiul-text-dark)] hover:text-[var(--kiul-green)] transition whitespace-nowrap"
             >
               {m.label}
             </Link>
